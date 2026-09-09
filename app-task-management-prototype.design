@@ -99,8 +99,8 @@
           "version": 1,
           "contentHeight": 904,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-c2ffb673",
-          "measuredAt": 1788917782025
+          "sourceHash": "fnv1a-e9eedf09",
+          "measuredAt": 1788922966857
         }
       },
       "devMetadata": {
@@ -494,25 +494,13 @@
           }
         ]
       }
-    },
-    {
-      "id": "image-1",
-      "title": "image",
-      "type": "image",
-      "version": 1,
-      "createdAt": 1788920039977,
-      "canvasData": {
-        "x": -864,
-        "y": 2292
-      },
-      "devMetadata": {
-        "imageSrc": "assets/image.png"
-      }
     }
   ],
   "config": {
-    "autoLayout": false,
+    "autoLayout": true,
     "deviceType": "mobile",
-    "projectName": "APP任务管理原型"
+    "projectName": "APP任务管理原型",
+    "showEdge": false,
+    "visualEditorEnabled": false
   }
 }
