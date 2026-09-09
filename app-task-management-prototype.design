@@ -494,10 +494,24 @@
           }
         ]
       }
+    },
+    {
+      "id": "image-1",
+      "title": "image",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1788920039977,
+      "canvasData": {
+        "x": -864,
+        "y": 2292
+      },
+      "devMetadata": {
+        "imageSrc": "assets/image.png"
+      }
     }
   ],
   "config": {
-    "autoLayout": true,
+    "autoLayout": false,
     "deviceType": "mobile",
     "projectName": "APP任务管理原型"
   }
