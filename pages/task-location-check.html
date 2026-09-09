@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>任务管理首页</title>
+    <title>位置确认</title>
     <style id="theme-vars">
 :root {
   --brand-prefix: howso;
-  
-  /* Primary blue scale */
   --howso-primary-50: #eff6ff;
   --howso-primary-100: #dbeafe;
   --howso-primary-200: #bfdbfe;
@@ -19,8 +17,6 @@
   --howso-primary-700: #1d4ed8;
   --howso-primary-800: #1e40af;
   --howso-primary-900: #1e3a8a;
-  
-  /* Neutral gray scale */
   --howso-gray-50: #f8fafc;
   --howso-gray-100: #f1f5f9;
   --howso-gray-200: #e2e8f0;
@@ -31,14 +27,10 @@
   --howso-gray-700: #334155;
   --howso-gray-800: #1e293b;
   --howso-gray-900: #0f172a;
-  
-  /* State colors */
   --howso-state-success: #10b981;
   --howso-state-warning: #f59e0b;
   --howso-state-error: #ef4444;
   --howso-state-info: #3b82f6;
-  
-  /* Semantic aliases */
   --howso-background: #ffffff;
   --howso-foreground: #0f172a;
   --howso-card: #ffffff;
@@ -56,7 +48,6 @@
   --howso-radius-medium: 8px;
   --howso-radius-large: 12px;
 }
-
 .dark {
   --howso-background: #0f172a;
   --howso-foreground: #f8fafc;
@@ -71,11 +62,7 @@
   --howso-border: #334155;
   --howso-input: #334155;
 }
-
-* {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
   font-family: "Microsoft YaHei", "PingFang SC", -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--howso-background);
@@ -83,8 +70,6 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-
-/* Typography system */
 .howso-text-xs { font-size: 12px; line-height: 16px; }
 .howso-text-sm { font-size: 13px; line-height: 18px; }
 .howso-text-base { font-size: 14px; line-height: 20px; }
@@ -92,17 +77,14 @@ body {
 .howso-text-xl { font-size: 18px; line-height: 28px; }
 .howso-text-2xl { font-size: 20px; line-height: 30px; }
 .howso-text-3xl { font-size: 24px; line-height: 32px; }
-
 .howso-font-medium { font-weight: 500; }
 .howso-font-semibold { font-weight: 600; }
 .howso-font-bold { font-weight: 700; }
-
 .howso-text-primary { color: var(--howso-primary); }
 .howso-text-muted { color: var(--howso-muted-foreground); }
 .howso-text-success { color: var(--howso-state-success); }
 .howso-text-warning { color: var(--howso-state-warning); }
 .howso-text-error { color: var(--howso-state-error); }
-
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
     <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
@@ -204,118 +186,93 @@ body {
 </head>
 <body class="min-h-screen font-sans antialiased">
   <div class="max-w-[430px] mx-auto min-h-screen flex flex-col bg-background">
-    <header class="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border px-4 py-3 flex items-center justify-center">
-      <h1 class="howso-text-xl howso-font-semibold text-foreground">任务管理</h1>
+    <header class="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border px-4 py-3 flex items-center gap-3">
+      <button type="button" data-dom-id="btn-back-home" class="w-9 h-9 rounded-lg flex items-center justify-center text-foreground hover:bg-muted active:bg-muted/80 transition-colors" aria-label="返回">
+        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+      </button>
+      <h1 class="howso-text-lg howso-font-semibold text-foreground flex-1 text-center pr-12">位置确认</h1>
     </header>
 
     <main class="flex-1 p-4 space-y-5 overflow-y-auto">
-      <section class="grid grid-cols-2 gap-3">
-        <div class="bg-card border border-border rounded-xl p-4 shadow-sm flex flex-col justify-between gap-2" data-dom-id="stat-today">
-          <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
-            <i data-lucide="calendar-check" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <p class="howso-text-xs howso-text-muted">今日任务</p>
-            <p class="howso-text-2xl howso-font-bold text-foreground mt-0.5">3</p>
-          </div>
-        </div>
-        <div class="bg-card border border-border rounded-xl p-4 shadow-sm flex flex-col justify-between gap-2" data-dom-id="stat-pending">
-          <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background-color: rgba(245,158,11,0.1); color: var(--howso-state-warning);">
-            <i data-lucide="clock" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <p class="howso-text-xs howso-text-muted">待完成</p>
-            <p class="howso-text-2xl howso-font-bold text-foreground mt-0.5">1</p>
+      <section class="bg-card border border-border rounded-xl overflow-hidden shadow-sm" data-dom-id="map-current-location">
+        <div class="h-40 bg-gradient-to-br from-primary/10 to-muted relative flex items-center justify-center">
+          <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(var(--howso-border) 1px, transparent 1px); background-size: 16px 16px;"></div>
+          <div class="relative flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg">
+              <i data-lucide="map-pin" class="w-6 h-6"></i>
+            </div>
+            <span class="howso-text-sm howso-font-medium text-foreground">当前位置</span>
           </div>
         </div>
-        <div class="bg-card border border-border rounded-xl p-4 shadow-sm flex flex-col justify-between gap-2" data-dom-id="stat-completed">
-          <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background-color: rgba(16,185,129,0.1); color: var(--howso-state-success);">
-            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+        <div class="px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i data-lucide="navigation" class="w-4 h-4 text-primary"></i>
+            <span class="howso-text-sm howso-text-muted">GPS 定位中</span>
           </div>
-          <div>
-            <p class="howso-text-xs howso-text-muted">已完成</p>
-            <p class="howso-text-2xl howso-font-bold text-foreground mt-0.5">2</p>
-          </div>
+          <span class="howso-text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-md">精度 5 米</span>
         </div>
-        <div class="bg-card border border-border rounded-xl p-4 shadow-sm flex flex-col justify-between gap-2" data-dom-id="stat-tower-pending">
-          <div class="w-9 h-9 rounded-lg bg-muted text-muted-foreground flex items-center justify-center">
-            <i data-lucide="map-pin" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <p class="howso-text-xs howso-text-muted">塔址待确认</p>
-            <p class="howso-text-2xl howso-font-bold text-foreground mt-0.5">0</p>
+      </section>
+
+      <section class="bg-card border border-border rounded-xl p-4 shadow-sm space-y-3" data-dom-id="task-info-card">
+        <div class="flex items-center justify-between">
+          <h2 class="howso-text-base howso-font-semibold text-foreground">任务信息</h2>
+          <span class="howso-text-xs px-2 py-0.5 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);">待执行</span>
+        </div>
+        <div class="space-y-2">
+          <p class="howso-text-sm howso-font-medium text-foreground">前进大街基站 RRU 设备检修</p>
+          <div class="flex items-start gap-3 pt-2 border-t border-border">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <i data-lucide="tower-control" class="w-5 h-5"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="howso-text-base howso-font-medium text-foreground truncate">长春-朝阳-前进大街基站</p>
+              <p class="howso-text-sm howso-text-muted mt-0.5">编号：JL-CC-CY-0231</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section>
-        <div class="flex items-center justify-between mb-3">
-          <h2 class="howso-text-lg howso-font-semibold text-foreground">任务列表</h2>
-          <button type="button" data-dom-id="btn-filter-tasks" class="howso-text-sm text-primary flex items-center gap-1">
-            全部 <i data-lucide="chevron-down" class="w-4 h-4"></i>
-          </button>
-        </div>
-
-        <div class="bg-card border border-border rounded-xl p-4 shadow-sm space-y-3 mb-4" data-dom-id="task-filter-card">
-          <div class="space-y-2">
-            <label for="filter-task-name" class="howso-text-sm howso-font-medium text-foreground">任务名称</label>
-            <div class="relative">
-              <i data-lucide="search" class="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2"></i>
-              <input type="text" id="filter-task-name" data-dom-id="filter-task-name" placeholder="搜索任务名称 / 铁塔名称" class="w-full rounded-xl border border-input bg-background pl-9 pr-4 py-3 howso-text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-3">
-            <div class="space-y-2">
-              <label for="filter-task-time" class="howso-text-sm howso-font-medium text-foreground">任务时间</label>
-              <div class="relative">
-                <input type="date" id="filter-task-time" data-dom-id="filter-task-time" class="w-full rounded-xl border border-input bg-background px-3 py-3 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
-              </div>
-            </div>
-            <div class="space-y-2">
-              <label for="filter-task-status" class="howso-text-sm howso-font-medium text-foreground">任务状态</label>
-              <div class="relative">
-                <select id="filter-task-status" data-dom-id="filter-task-status" class="w-full appearance-none rounded-xl border border-input bg-background px-3 py-3 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
-                  <option value="">全部状态</option>
-                  <option value="pending">待开始</option>
-                  <option value="progress">进行中</option>
-                  <option value="completed">已完成</option>
-                  <option value="overdue">已逾期</option>
-                </select>
-                <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <section class="bg-card border border-border rounded-xl p-4 shadow-sm space-y-3" data-dom-id="location-compare-card">
+        <h2 class="howso-text-base howso-font-semibold text-foreground">位置关联</h2>
         <div class="space-y-3">
-          <a href="task-location-check.html" data-dom-id="task-card-1" class="block bg-card border border-border rounded-xl p-4 shadow-sm active:bg-muted/50 transition-colors cursor-pointer">
-            <div class="flex items-start justify-between gap-2">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <span class="howso-text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-md howso-font-medium truncate max-w-[160px]">前进大街基站设备巡检</span>
-                  <span class="howso-text-xs px-2 py-0.5 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);">进行中</span>
-                </div>
-                <h3 class="howso-text-base howso-font-semibold text-foreground truncate">长春-朝阳-前进大街基站</h3>
-                <p class="howso-text-sm howso-text-muted mt-1">2025-09-08 09:00 ~ 11:00</p>
-              </div>
-              <i data-lucide="chevron-right" class="w-5 h-5 text-muted-foreground shrink-0 mt-1"></i>
+          <div class="flex items-start gap-3 p-3 rounded-xl border border-border bg-muted/30">
+            <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
             </div>
-          </a>
-
-          <a href="task-location-check.html" data-dom-id="task-card-2" class="block bg-card border border-border rounded-xl p-4 shadow-sm active:bg-muted/50 transition-colors cursor-pointer">
-            <div class="flex items-start justify-between gap-2">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <span class="howso-text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-md howso-font-medium truncate max-w-[160px]">松江路基站 RRU 检修</span>
-                  <span class="howso-text-xs px-2 py-0.5 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);">已完成</span>
-                </div>
-                <h3 class="howso-text-base howso-font-semibold text-foreground truncate">吉林-丰满-松江路基站</h3>
-                <p class="howso-text-sm howso-text-muted mt-1">2025-09-07 14:00 ~ 16:30</p>
-              </div>
-              <i data-lucide="chevron-right" class="w-5 h-5 text-muted-foreground shrink-0 mt-1"></i>
+            <div class="flex-1 min-w-0">
+              <p class="howso-text-sm howso-font-medium text-foreground">当前位置</p>
+              <p class="howso-text-xs howso-text-muted">经度：125.3234 · 纬度：43.8876</p>
+              <p class="howso-text-xs howso-text-muted">精度：5 米</p>
             </div>
-          </a>
+          </div>
+          <div class="flex items-start gap-3 p-3 rounded-xl border border-border bg-muted/30">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background-color: rgba(245,158,11,0.1); color: var(--howso-state-warning);">
+              <i data-lucide="tower-control" class="w-5 h-5"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="howso-text-sm howso-font-medium text-foreground">塔址位置</p>
+              <p class="howso-text-xs howso-text-muted">经度：125.3237 · 纬度：43.8879</p>
+              <p class="howso-text-xs howso-text-muted">长春市朝阳区前进大街 231 号</p>
+            </div>
+          </div>
         </div>
+        <div class="flex items-center justify-between pt-2 border-t border-border">
+          <span class="howso-text-sm text-foreground">直线距离</span>
+          <span class="howso-text-base howso-font-semibold text-primary">32 米</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl border" style="border-color: rgba(16,185,129,0.2); background-color: rgba(16,185,129,0.05);">
+          <i data-lucide="check-circle-2" class="w-5 h-5" style="color: var(--howso-state-success);"></i>
+          <span class="howso-text-sm howso-font-medium" style="color: var(--howso-state-success);">位置校验通过，可在允许范围内执行任务</span>
+        </div>
+      </section>
+
+      <section class="pt-2 space-y-3">
+        <a href="task-detail.html" data-dom-id="btn-start-execute" class="block w-full py-3.5 rounded-xl bg-primary text-primary-foreground howso-text-base howso-font-semibold shadow-md active:scale-[0.98] transition-transform text-center">
+          位置正确，开始执行
+        </a>
+        <button type="button" data-dom-id="btn-correct-tower" class="w-full py-3.5 rounded-xl bg-card border border-border text-foreground howso-text-base howso-font-medium active:bg-muted transition-colors">
+          位置偏差，申请变更
+        </button>
       </section>
     </main>
 
@@ -332,6 +289,71 @@ body {
       </div>
     </nav>
   </div>
-  <script>lucide.createIcons();</script>
+
+  <div id="tower-change-modal" class="hidden fixed inset-0 z-50 items-end sm:items-center justify-center bg-black/50 p-4" aria-hidden="true">
+    <div class="w-full max-w-[430px] bg-card rounded-t-2xl sm:rounded-2xl p-5 shadow-xl space-y-4 max-h-[85vh] overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <h3 class="howso-text-lg howso-font-semibold text-foreground">塔址变更申请</h3>
+        <button type="button" data-dom-id="btn-close-tower-modal" class="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:bg-muted">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-2">
+        <label class="howso-text-sm howso-font-medium text-foreground">现场照片</label>
+        <button type="button" data-dom-id="btn-upload-tower-photo" class="w-full h-28 rounded-xl border-2 border-dashed border-input bg-muted flex flex-col items-center justify-center gap-2 text-muted-foreground active:bg-muted/80 transition-colors">
+          <i data-lucide="camera" class="w-7 h-7"></i>
+          <span class="howso-text-sm">点击上传现场照片</span>
+        </button>
+      </div>
+
+      <div class="space-y-2">
+        <label class="howso-text-sm howso-font-medium text-foreground">重新选择塔址</label>
+        <div class="relative">
+          <select data-dom-id="select-tower-search" class="w-full appearance-none rounded-xl border border-input bg-background px-4 py-3 howso-text-base text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+            <option>长春-朝阳-前进大街基站</option>
+            <option>长春-朝阳-卫星路基站</option>
+            <option>长春-朝阳-人民大街基站</option>
+          </select>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label class="howso-text-sm howso-font-medium text-foreground">偏差原因</label>
+        <textarea data-dom-id="textarea-deviation-reason" rows="4" placeholder="请说明塔址与实际位置存在偏差的原因…" class="w-full rounded-xl border border-input bg-background px-4 py-3 howso-text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"></textarea>
+      </div>
+
+      <button type="button" data-dom-id="btn-save-tower-change" class="w-full py-3.5 rounded-xl bg-primary text-primary-foreground howso-text-base howso-font-semibold shadow-md active:scale-[0.98] transition-transform">
+        保存变更申请
+      </button>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const modal = document.getElementById('tower-change-modal');
+      const openBtn = document.querySelector('[data-dom-id="btn-correct-tower"]');
+      const closeBtn = document.querySelector('[data-dom-id="btn-close-tower-modal"]');
+      openBtn.addEventListener('click', function(){
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modal.setAttribute('aria-hidden','false');
+      });
+      closeBtn.addEventListener('click', function(){
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        modal.setAttribute('aria-hidden','true');
+      });
+      modal.addEventListener('click', function(e){
+        if(e.target === modal){
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+          modal.setAttribute('aria-hidden','true');
+        }
+      });
+    })();
+    lucide.createIcons();
+  </script>
 </body>
 </html>
