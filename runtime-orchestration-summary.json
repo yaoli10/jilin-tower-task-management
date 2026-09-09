@@ -1,0 +1,561 @@
+{
+  "skillProvenance": {
+    "name": "solo-design",
+    "version": "2026.08.06.19.15.08",
+    "release": "prompt-base-cloud-ssot-migration",
+    "version_source": "skill-release-manifest.json",
+    "read_status": "ok"
+  },
+  "project": {
+    "projectName": "APP任务管理原型",
+    "designProjectPath": "e:/铁塔分省/吉林铁塔/app-task-management-prototype",
+    "resolvedLane": "existing_edit_add_comparison",
+    "selectedIntentWorkflow": "intent-workflows/intent-project-mutation/INTENT_WORKFLOW.md",
+    "contextRequirementsLoaded": [
+      {
+        "path": "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/page-rendering-quality-gate.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/design-artifact-validation.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/delivery-evidence-contract.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "visual-experience/visual-experience-guidelines.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-mutation/edit-existing-project.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-mutation/orchestration-summary-fields.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      }
+    ],
+    "deviceType": "mobile",
+    "viewportMode": "app-shell",
+    "brandPrefix": "howso",
+    "cssPath": "colors_and_type.css",
+    "operatingMode": "free-explore",
+    "styleContinuityAnchors": {
+      "colorSystem": {
+        "primary": "#2563eb blue family (--howso-primary-50..900)",
+        "background": "#ffffff light / #0f172a dark",
+        "surface": "white cards on light, #1e293b cards on dark",
+        "text": "#0f172a primary, #64748b muted",
+        "state": "success #10b981, warning #f59e0b, error #ef4444, info #3b82f6"
+      },
+      "shapeSystem": {
+        "radiusSmall": "4px",
+        "radiusMedium": "8px",
+        "radiusLarge": "12px",
+        "cardRadius": "12px rounded-xl",
+        "buttonRadius": "8px rounded-xl / 999px for FAB",
+        "avatarRadius": "999px"
+      },
+      "typographySystem": {
+        "fontStack": "Microsoft YaHei, PingFang SC, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scale": "xs 12px, sm 13px, base 14px, lg 16px, xl 18px, 2xl 20px, 3xl 24px",
+        "weights": "medium 500, semibold 600, bold 700"
+      },
+      "spacingSystem": {
+        "safeInset": "16px px-4",
+        "sectionGap": "20px space-y-5",
+        "cardPadding": "16px p-4",
+        "controlGap": "12px gap-3"
+      },
+      "componentLanguage": {
+        "cards": "white bg-card border border-border rounded-xl shadow-sm",
+        "inputs": "rounded-xl border border-input bg-background px-4 py-3",
+        "buttons": "rounded-xl bg-primary text-primary-foreground, full-width primary CTA",
+        "chips": "rounded-lg howso-text-sm px-3 py-1.5",
+        "lists": "rounded-xl border border-border bg-muted/30 rows"
+      },
+      "surfaceAndDepth": {
+        "elevation": "subtle shadow-sm on cards, sticky header with backdrop-blur",
+        "dividers": "1px border-border separators",
+        "hover": "active:scale-[0.98] on primary buttons, hover:bg-muted on icon buttons"
+      },
+      "imageryAndIconography": {
+        "iconLibrary": "Lucide icons via data-lucide + lucide.createIcons()",
+        "iconSize": "16/20/24px sets",
+        "avatarStyle": "initials on primary circle"
+      },
+      "interactionTone": {
+        "feedback": "active scale, hover bg-muted, focus ring-ring",
+        "navigation": "bottom tab bar with icon+label, hideEdge interactions for nav"
+      }
+    },
+    "sourceProjectLaneHeritage": {
+      "originalOperatingMode": "free-explore",
+      "noDesignLibrary": true,
+      "noRestoreTarget": true
+    },
+    "dispatchPreflightManifest": [
+      {
+        "nodeId": "page-maintenance-monitor",
+        "packetType": "ExistingEditPagePacket",
+        "pageRuntimeGuide": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "dispatchContract": "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+        "title": "维修过程监管",
+        "htmlSrc": "pages/maintenance-monitor.html",
+        "slug": "maintenance-monitor",
+        "pageType": "task-driven",
+        "businessScenario": "task-supervision-step-3-device-single-select",
+        "deviceType": "mobile",
+        "viewportMode": "app-shell",
+        "qualityRisks": [
+          "preserve-bottom-nav",
+          "preserve-step-indicator",
+          "radio-group-state"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/maintenance-monitor.html"
+          ]
+        }
+      },
+      {
+        "nodeId": "page-task-detail",
+        "packetType": "ExistingEditPagePacket",
+        "pageRuntimeGuide": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "dispatchContract": "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+        "title": "作业详情",
+        "htmlSrc": "pages/task-detail.html",
+        "slug": "task-detail",
+        "pageType": "task-driven",
+        "businessScenario": "task-detail-view",
+        "deviceType": "mobile",
+        "viewportMode": "app-shell",
+        "qualityRisks": [
+          "dense-info-cards",
+          "scroll-on-mobile",
+          "back-navigation"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/task-detail.html"
+          ]
+        }
+      },
+      {
+        "nodeId": "page-login",
+        "packetType": "ExistingEditPagePacket",
+        "pageRuntimeGuide": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "dispatchContract": "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+        "title": "登录",
+        "htmlSrc": "pages/login.html",
+        "slug": "login",
+        "pageType": "task-driven",
+        "businessScenario": "app-login",
+        "deviceType": "mobile",
+        "viewportMode": "app-shell",
+        "qualityRisks": [
+          "form-validation-states",
+          "safe-area-bottom"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/login.html"
+          ]
+        }
+      },
+      {
+        "nodeId": "page-app-home",
+        "packetType": "ExistingEditPagePacket",
+        "pageRuntimeGuide": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "dispatchContract": "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+        "title": "APP首页",
+        "htmlSrc": "pages/app-home.html",
+        "slug": "app-home",
+        "pageType": "task-driven",
+        "businessScenario": "app-workbench-home",
+        "deviceType": "mobile",
+        "viewportMode": "app-shell",
+        "qualityRisks": [
+          "quick-access-grid",
+          "stats-density",
+          "bottom-nav-active"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/app-home.html"
+          ]
+        }
+      }
+    ],
+    "expectedDispatches": [
+      {
+        "nodeId": "page-web-task-management",
+        "packetType": "ExistingEditPagePacket",
+        "pageRuntimeGuide": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "dispatchContract": "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+        "title": "PC任务管理",
+        "htmlSrc": "pages/web-task-management.html",
+        "slug": "web-task-management",
+        "pageType": "web-dashboard",
+        "businessScenario": "pc-task-management-list",
+        "deviceType": "desktop",
+        "viewportMode": "web-dashboard",
+        "qualityRisks": [
+          "desktop-table-layout",
+          "pc-side-navigation",
+          "data-density"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/web-task-management.html"
+          ]
+        },
+        "status": "completed",
+        "completedAt": 1788881280
+      },
+      {
+        "nodeId": "page-new-task-tower",
+        "packetType": "ExistingEditPagePacket",
+        "pageRuntimeGuide": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "dispatchContract": "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+        "title": "新增任务-关联塔",
+        "htmlSrc": "pages/new-task-tower.html",
+        "slug": "new-task-tower",
+        "pageType": "task-driven",
+        "businessScenario": "task-creation-step-1",
+        "deviceType": "mobile",
+        "viewportMode": "app-shell",
+        "qualityRisks": [
+          "add-form-field",
+          "preserve-step-flow"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/new-task-tower.html"
+          ]
+        },
+        "status": "completed",
+        "completedAt": 1788916481
+      },
+      {
+        "nodeId": "page-web-task-management",
+        "packetType": "ExistingEditPagePacket",
+        "pageRuntimeGuide": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "dispatchContract": "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+        "title": "PC任务管理",
+        "htmlSrc": "pages/web-task-management.html",
+        "slug": "web-task-management",
+        "pageType": "web-dashboard",
+        "businessScenario": "pc-task-management-list",
+        "deviceType": "desktop",
+        "viewportMode": "web-dashboard",
+        "qualityRisks": [
+          "table-column-restructure",
+          "current-stage-mapping"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/web-task-management.html"
+          ]
+        },
+        "status": "completed",
+        "completedAt": 1788916481
+      },
+      {
+        "nodeId": "page-task-home",
+        "packetType": "ExistingEditPagePacket",
+        "pageRuntimeGuide": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "dispatchContract": "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+        "title": "任务管理首页",
+        "htmlSrc": "pages/task-home.html",
+        "slug": "task-home",
+        "pageType": "task-driven",
+        "businessScenario": "task-list-dashboard",
+        "deviceType": "mobile",
+        "viewportMode": "app-shell",
+        "qualityRisks": [
+          "filter-form-density",
+          "preserve-task-cards"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/task-home.html"
+          ]
+        },
+        "status": "completed",
+        "completedAt": 1788917155
+      }
+    ],
+    "validationRunDiscipline": {
+      "maxFullValidationRuns": 2,
+      "softWarningsTriggerRepair": false,
+      "blockingRepairMode": "targeted-once",
+      "forbiddenRepairTriggers": [
+        "soft-warning-only",
+        "provenance-warning-only",
+        "style-warning-only"
+      ]
+    },
+    "validationHistory": [
+      {
+        "runAt": 1788857670,
+        "trigger": "post-modification-full-validation",
+        "result": "passed",
+        "checked": [
+          "design-json-valid",
+          "all-pages-exist",
+          "all-interactions-resolved",
+          "target-page-ids-exist",
+          "page-ids-unique"
+        ]
+      },
+      {
+        "runAt": 1788876019,
+        "trigger": "post-modification-full-validation",
+        "result": "passed",
+        "checked": [
+          "design-json-valid",
+          "all-pages-exist",
+          "all-interactions-resolved",
+          "target-page-ids-exist",
+          "page-ids-unique"
+        ]
+      },
+      {
+        "runAt": 1788876875,
+        "trigger": "post-modification-full-validation",
+        "result": "passed",
+        "checked": [
+          "design-json-valid",
+          "all-pages-exist",
+          "all-interactions-resolved",
+          "target-page-ids-exist",
+          "page-ids-unique",
+          "login-page-first"
+        ]
+      },
+      {
+        "runAt": 1788877259,
+        "trigger": "interaction-completeness-check",
+        "result": "passed",
+        "checked": [
+          "design-json-valid",
+          "all-pages-exist",
+          "all-interactions-resolved",
+          "target-page-ids-exist",
+          "page-ids-unique",
+          "login-page-first",
+          "all-bottom-nav-task-home-linked"
+        ]
+      },
+      {
+        "runAt": 1788878319,
+        "trigger": "next-button-fallback-fix",
+        "result": "passed",
+        "checked": [
+          "design-json-valid",
+          "all-pages-exist",
+          "all-interactions-resolved",
+          "target-page-ids-exist",
+          "page-ids-unique",
+          "login-page-first",
+          "next-buttons-have-href-fallback"
+        ]
+      },
+      {
+        "runAt": 1788879481,
+        "trigger": "pc-task-management-page-added",
+        "result": "passed",
+        "checked": [
+          "design-json-valid",
+          "all-pages-exist",
+          "all-interactions-resolved",
+          "target-page-ids-exist",
+          "page-ids-unique",
+          "login-page-first",
+          "pc-page-registered"
+        ]
+      }
+    ],
+    "validationRepairLedger": []
+  },
+  "pages": [
+    {
+      "nodeId": "page-login",
+      "slug": "login",
+      "title": "登录",
+      "htmlSrc": "pages/login.html",
+      "pageType": "task-driven",
+      "businessScenario": "app-login"
+    },
+    {
+      "nodeId": "page-app-home",
+      "slug": "app-home",
+      "title": "APP首页",
+      "htmlSrc": "pages/app-home.html",
+      "pageType": "task-driven",
+      "businessScenario": "app-workbench-home"
+    },
+    {
+      "nodeId": "page-task-home",
+      "slug": "task-home",
+      "title": "任务管理首页",
+      "htmlSrc": "pages/task-home.html",
+      "pageType": "task-driven",
+      "businessScenario": "task-list-dashboard"
+    },
+    {
+      "nodeId": "page-new-task-tower",
+      "slug": "new-task-tower",
+      "title": "新增任务-关联塔",
+      "htmlSrc": "pages/new-task-tower.html",
+      "pageType": "task-driven",
+      "businessScenario": "task-creation-step-1"
+    },
+    {
+      "nodeId": "page-new-task-time",
+      "slug": "new-task-time",
+      "title": "新增任务-作业时间",
+      "htmlSrc": "pages/new-task-time.html",
+      "pageType": "task-driven",
+      "businessScenario": "task-creation-step-2"
+    },
+    {
+      "nodeId": "page-verify-personnel",
+      "slug": "verify-personnel",
+      "title": "上塔前人员验证",
+      "htmlSrc": "pages/verify-personnel.html",
+      "pageType": "task-driven",
+      "businessScenario": "task-supervision-step-1"
+    },
+    {
+      "nodeId": "page-climb-safety",
+      "slug": "climb-safety",
+      "title": "上塔过程安全监管",
+      "htmlSrc": "pages/climb-safety.html",
+      "pageType": "task-driven",
+      "businessScenario": "task-supervision-step-2"
+    },
+    {
+      "nodeId": "page-maintenance-monitor",
+      "slug": "maintenance-monitor",
+      "title": "维修过程监管",
+      "htmlSrc": "pages/maintenance-monitor.html",
+      "pageType": "task-driven",
+      "businessScenario": "task-supervision-step-3"
+    },
+    {
+      "nodeId": "page-task-detail",
+      "slug": "task-detail",
+      "title": "作业详情",
+      "htmlSrc": "pages/task-detail.html",
+      "pageType": "task-driven",
+      "businessScenario": "task-detail-view"
+    },
+    {
+      "nodeId": "page-my-profile",
+      "slug": "my-profile",
+      "title": "我的",
+      "htmlSrc": "pages/my-profile.html",
+      "pageType": "task-driven",
+      "businessScenario": "user-profile"
+    },
+    {
+      "nodeId": "page-web-task-management",
+      "slug": "web-task-management",
+      "title": "PC任务管理",
+      "htmlSrc": "pages/web-task-management.html",
+      "pageType": "web-dashboard",
+      "businessScenario": "pc-task-management-list"
+    }
+  ],
+  "validationHistory": [
+    {
+      "runAt": 1788880532,
+      "trigger": "pc-task-management-color-alignment",
+      "result": "passed",
+      "checked": [
+        "design-json-valid",
+        "all-pages-exist",
+        "all-interactions-resolved",
+        "target-page-ids-exist",
+        "page-ids-unique",
+        "login-page-first",
+        "pc-page-registered"
+      ]
+    }
+  ]
+}

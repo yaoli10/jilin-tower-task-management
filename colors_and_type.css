@@ -1,0 +1,97 @@
+:root {
+  --brand-prefix: howso;
+  
+  /* Primary blue scale */
+  --howso-primary-50: #eff6ff;
+  --howso-primary-100: #dbeafe;
+  --howso-primary-200: #bfdbfe;
+  --howso-primary-300: #93c5fd;
+  --howso-primary-400: #60a5fa;
+  --howso-primary-500: #3b82f6;
+  --howso-primary-600: #2563eb;
+  --howso-primary-700: #1d4ed8;
+  --howso-primary-800: #1e40af;
+  --howso-primary-900: #1e3a8a;
+  
+  /* Neutral gray scale */
+  --howso-gray-50: #f8fafc;
+  --howso-gray-100: #f1f5f9;
+  --howso-gray-200: #e2e8f0;
+  --howso-gray-300: #cbd5e1;
+  --howso-gray-400: #94a3b8;
+  --howso-gray-500: #64748b;
+  --howso-gray-600: #475569;
+  --howso-gray-700: #334155;
+  --howso-gray-800: #1e293b;
+  --howso-gray-900: #0f172a;
+  
+  /* State colors */
+  --howso-state-success: #10b981;
+  --howso-state-warning: #f59e0b;
+  --howso-state-error: #ef4444;
+  --howso-state-info: #3b82f6;
+  
+  /* Semantic aliases */
+  --howso-background: #ffffff;
+  --howso-foreground: #0f172a;
+  --howso-card: #ffffff;
+  --howso-card-foreground: #0f172a;
+  --howso-popover: #ffffff;
+  --howso-popover-foreground: #0f172a;
+  --howso-primary: #2563eb;
+  --howso-primary-foreground: #ffffff;
+  --howso-muted: #f1f5f9;
+  --howso-muted-foreground: #64748b;
+  --howso-border: #e2e8f0;
+  --howso-input: #e2e8f0;
+  --howso-ring: #3b82f6;
+  --howso-radius-small: 4px;
+  --howso-radius-medium: 8px;
+  --howso-radius-large: 12px;
+}
+
+.dark {
+  --howso-background: #0f172a;
+  --howso-foreground: #f8fafc;
+  --howso-card: #1e293b;
+  --howso-card-foreground: #f8fafc;
+  --howso-popover: #1e293b;
+  --howso-popover-foreground: #f8fafc;
+  --howso-primary: #3b82f6;
+  --howso-primary-foreground: #ffffff;
+  --howso-muted: #334155;
+  --howso-muted-foreground: #94a3b8;
+  --howso-border: #334155;
+  --howso-input: #334155;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--howso-background);
+  color: var(--howso-foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography system */
+.howso-text-xs { font-size: 12px; line-height: 16px; }
+.howso-text-sm { font-size: 13px; line-height: 18px; }
+.howso-text-base { font-size: 14px; line-height: 20px; }
+.howso-text-lg { font-size: 16px; line-height: 24px; }
+.howso-text-xl { font-size: 18px; line-height: 28px; }
+.howso-text-2xl { font-size: 20px; line-height: 30px; }
+.howso-text-3xl { font-size: 24px; line-height: 32px; }
+
+.howso-font-medium { font-weight: 500; }
+.howso-font-semibold { font-weight: 600; }
+.howso-font-bold { font-weight: 700; }
+
+.howso-text-primary { color: var(--howso-primary); }
+.howso-text-muted { color: var(--howso-muted-foreground); }
+.howso-text-success { color: var(--howso-state-success); }
+.howso-text-warning { color: var(--howso-state-warning); }
+.howso-text-error { color: var(--howso-state-error); }

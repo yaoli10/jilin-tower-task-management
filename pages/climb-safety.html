@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上塔过程安全监管</title>
+    <style id="theme-vars">
+:root {
+  --brand-prefix: howso;
+  --howso-primary-50: #eff6ff;
+  --howso-primary-100: #dbeafe;
+  --howso-primary-200: #bfdbfe;
+  --howso-primary-300: #93c5fd;
+  --howso-primary-400: #60a5fa;
+  --howso-primary-500: #3b82f6;
+  --howso-primary-600: #2563eb;
+  --howso-primary-700: #1d4ed8;
+  --howso-primary-800: #1e40af;
+  --howso-primary-900: #1e3a8a;
+  --howso-gray-50: #f8fafc;
+  --howso-gray-100: #f1f5f9;
+  --howso-gray-200: #e2e8f0;
+  --howso-gray-300: #cbd5e1;
+  --howso-gray-400: #94a3b8;
+  --howso-gray-500: #64748b;
+  --howso-gray-600: #475569;
+  --howso-gray-700: #334155;
+  --howso-gray-800: #1e293b;
+  --howso-gray-900: #0f172a;
+  --howso-state-success: #10b981;
+  --howso-state-warning: #f59e0b;
+  --howso-state-error: #ef4444;
+  --howso-state-info: #3b82f6;
+  --howso-background: #ffffff;
+  --howso-foreground: #0f172a;
+  --howso-card: #ffffff;
+  --howso-card-foreground: #0f172a;
+  --howso-popover: #ffffff;
+  --howso-popover-foreground: #0f172a;
+  --howso-primary: #2563eb;
+  --howso-primary-foreground: #ffffff;
+  --howso-muted: #f1f5f9;
+  --howso-muted-foreground: #64748b;
+  --howso-border: #e2e8f0;
+  --howso-input: #e2e8f0;
+  --howso-ring: #3b82f6;
+  --howso-radius-small: 4px;
+  --howso-radius-medium: 8px;
+  --howso-radius-large: 12px;
+}
+.dark {
+  --howso-background: #0f172a;
+  --howso-foreground: #f8fafc;
+  --howso-card: #1e293b;
+  --howso-card-foreground: #f8fafc;
+  --howso-popover: #1e293b;
+  --howso-popover-foreground: #f8fafc;
+  --howso-primary: #3b82f6;
+  --howso-primary-foreground: #ffffff;
+  --howso-muted: #334155;
+  --howso-muted-foreground: #94a3b8;
+  --howso-border: #334155;
+  --howso-input: #334155;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--howso-background);
+  color: var(--howso-foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.howso-text-xs { font-size: 12px; line-height: 16px; }
+.howso-text-sm { font-size: 13px; line-height: 18px; }
+.howso-text-base { font-size: 14px; line-height: 20px; }
+.howso-text-lg { font-size: 16px; line-height: 24px; }
+.howso-text-xl { font-size: 18px; line-height: 28px; }
+.howso-text-2xl { font-size: 20px; line-height: 30px; }
+.howso-text-3xl { font-size: 24px; line-height: 32px; }
+.howso-font-medium { font-weight: 500; }
+.howso-font-semibold { font-weight: 600; }
+.howso-font-bold { font-weight: 700; }
+.howso-text-primary { color: var(--howso-primary); }
+.howso-text-muted { color: var(--howso-muted-foreground); }
+.howso-text-success { color: var(--howso-state-success); }
+.howso-text-warning { color: var(--howso-state-warning); }
+.howso-text-error { color: var(--howso-state-error); }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--howso-background);
+    --color-foreground: var(--howso-foreground);
+    --color-card: var(--howso-card);
+    --color-card-foreground: var(--howso-card-foreground);
+    --color-popover: var(--howso-popover);
+    --color-popover-foreground: var(--howso-popover-foreground);
+    --color-primary: var(--howso-primary);
+    --color-primary-foreground: var(--howso-primary-foreground);
+    --color-muted: var(--howso-muted);
+    --color-muted-foreground: var(--howso-muted-foreground);
+    --color-border: var(--howso-border);
+    --color-input: var(--howso-input);
+    --color-ring: var(--howso-ring);
+    --radius-sm: var(--howso-radius-small);
+    --radius-md: var(--howso-radius-medium);
+    --radius-lg: var(--howso-radius-large);
+  }
+  @layer base {
+    body { background: var(--howso-background); color: var(--howso-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--howso-background); }
+      .text-background { color: var(--howso-background); }
+      .border-background { border-color: var(--howso-background); }
+      .ring-background { --tw-ring-color: var(--howso-background); }
+      .bg-foreground { background-color: var(--howso-foreground); }
+      .text-foreground { color: var(--howso-foreground); }
+      .border-foreground { border-color: var(--howso-foreground); }
+      .ring-foreground { --tw-ring-color: var(--howso-foreground); }
+      .bg-card { background-color: var(--howso-card); }
+      .text-card { color: var(--howso-card); }
+      .border-card { border-color: var(--howso-card); }
+      .ring-card { --tw-ring-color: var(--howso-card); }
+      .bg-card-foreground { background-color: var(--howso-card-foreground); }
+      .text-card-foreground { color: var(--howso-card-foreground); }
+      .border-card-foreground { border-color: var(--howso-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--howso-card-foreground); }
+      .bg-popover { background-color: var(--howso-popover); }
+      .text-popover { color: var(--howso-popover); }
+      .border-popover { border-color: var(--howso-popover); }
+      .ring-popover { --tw-ring-color: var(--howso-popover); }
+      .bg-popover-foreground { background-color: var(--howso-popover-foreground); }
+      .text-popover-foreground { color: var(--howso-popover-foreground); }
+      .border-popover-foreground { border-color: var(--howso-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--howso-popover-foreground); }
+      .bg-primary { background-color: var(--howso-primary); }
+      .text-primary { color: var(--howso-primary); }
+      .border-primary { border-color: var(--howso-primary); }
+      .ring-primary { --tw-ring-color: var(--howso-primary); }
+      .bg-primary-foreground { background-color: var(--howso-primary-foreground); }
+      .text-primary-foreground { color: var(--howso-primary-foreground); }
+      .border-primary-foreground { border-color: var(--howso-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--howso-primary-foreground); }
+      .bg-muted { background-color: var(--howso-muted); }
+      .text-muted { color: var(--howso-muted); }
+      .border-muted { border-color: var(--howso-muted); }
+      .ring-muted { --tw-ring-color: var(--howso-muted); }
+      .bg-muted-foreground { background-color: var(--howso-muted-foreground); }
+      .text-muted-foreground { color: var(--howso-muted-foreground); }
+      .border-muted-foreground { border-color: var(--howso-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--howso-muted-foreground); }
+      .bg-border { background-color: var(--howso-border); }
+      .text-border { color: var(--howso-border); }
+      .border-border { border-color: var(--howso-border); }
+      .ring-border { --tw-ring-color: var(--howso-border); }
+      .bg-input { background-color: var(--howso-input); }
+      .text-input { color: var(--howso-input); }
+      .border-input { border-color: var(--howso-input); }
+      .ring-input { --tw-ring-color: var(--howso-input); }
+      .bg-ring { background-color: var(--howso-ring); }
+      .text-ring { color: var(--howso-ring); }
+      .border-ring { border-color: var(--howso-ring); }
+      .ring-ring { --tw-ring-color: var(--howso-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+  <div class="max-w-[430px] mx-auto min-h-screen flex flex-col bg-background">
+    <header class="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border px-4 py-3 flex items-center gap-3">
+      <button type="button" data-dom-id="btn-back-verify" class="w-9 h-9 rounded-lg flex items-center justify-center text-foreground hover:bg-muted active:bg-muted/80 transition-colors" aria-label="返回">
+        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+      </button>
+      <h1 class="howso-text-lg howso-font-semibold text-foreground flex-1 text-center pr-12">上塔过程安全监管</h1>
+    </header>
+
+    <main class="flex-1 p-4 space-y-5 overflow-y-auto">
+      <div class="flex items-center justify-between px-2" data-dom-id="step-indicator">
+        <div class="flex flex-col items-center gap-1.5 flex-1">
+          <div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+            <i data-lucide="check" class="w-4 h-4"></i>
+          </div>
+          <span class="howso-text-xs howso-text-muted">人员验证</span>
+        </div>
+        <div class="h-0.5 flex-1 bg-primary -mt-5"></div>
+        <div class="flex flex-col items-center gap-1.5 flex-1">
+          <div class="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center howso-text-sm howso-font-semibold">2</div>
+          <span class="howso-text-xs text-primary howso-font-medium">上塔监管</span>
+        </div>
+        <div class="h-0.5 flex-1 bg-border -mt-5"></div>
+        <div class="flex flex-col items-center gap-1.5 flex-1">
+          <div class="w-8 h-8 rounded-full bg-muted text-muted-foreground flex items-center justify-center howso-text-sm howso-font-semibold">3</div>
+          <span class="howso-text-xs howso-text-muted">维修监管</span>
+        </div>
+      </div>
+
+      <section class="bg-card border border-border rounded-xl p-4 shadow-sm space-y-3" data-dom-id="scene-chips">
+        <h2 class="howso-text-base howso-font-semibold text-foreground">识别场景</h2>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" data-dom-id="chip-no-helmet" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg howso-text-sm howso-font-medium bg-primary text-primary-foreground">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            未戴安全帽识别
+          </button>
+          <button type="button" data-dom-id="chip-no-vest" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg howso-text-sm howso-font-medium bg-primary text-primary-foreground">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            未穿反光衣识别
+          </button>
+          <button type="button" data-dom-id="chip-no-harness" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg howso-text-sm howso-font-medium bg-primary text-primary-foreground">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            未带安全带识别
+          </button>
+        </div>
+      </section>
+
+      <section class="bg-card border border-border rounded-xl p-4 shadow-sm space-y-3" data-dom-id="video-upload-section">
+        <h2 class="howso-text-base howso-font-semibold text-foreground">上传视频</h2>
+        <button type="button" data-dom-id="btn-upload-climb-video" class="w-full h-36 rounded-xl border-2 border-dashed border-input bg-muted flex flex-col items-center justify-center gap-2 text-muted-foreground active:bg-muted/80 transition-colors">
+          <i data-lucide="video" class="w-8 h-8"></i>
+          <span class="howso-text-sm">点击拍摄或上传上塔过程视频</span>
+        </button>
+        <p class="howso-text-xs howso-text-muted flex items-center gap-1">
+          <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+          AI 将自动识别未佩戴安全装备等违规行为
+        </p>
+      </section>
+
+      <a href="maintenance-monitor.html" data-dom-id="btn-next-maintenance" class="block w-full py-3.5 rounded-xl bg-primary text-primary-foreground howso-text-base howso-font-semibold shadow-md active:scale-[0.98] transition-transform text-center">
+        完成并进入下一步
+      </a>
+    </main>
+
+    <nav class="shrink-0 bg-card border-t border-border px-6 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
+      <div class="flex justify-around items-center">
+        <a href="task-home.html" data-dom-id="nav-task-home" class="flex flex-col items-center gap-1 py-2 px-4 text-primary">
+          <i data-lucide="home" class="w-5 h-5"></i>
+          <span class="howso-text-xs howso-font-medium">任务管理</span>
+        </a>
+        <a href="my-profile.html" data-dom-id="nav-my-profile" class="flex flex-col items-center gap-1 py-2 px-4 text-muted-foreground">
+          <i data-lucide="user" class="w-5 h-5"></i>
+          <span class="howso-text-xs howso-font-medium">我的</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,504 @@
+{
+  "data": [
+    {
+      "id": "page-login",
+      "title": "登录",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-5ce34e0a",
+          "measuredAt": 1788860419755
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/login.html",
+        "interactions": [
+          {
+            "domId": "btn-login",
+            "targetPageId": "page-app-home",
+            "transitionLabel": "登录进入首页"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-app-home",
+      "title": "APP首页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 169,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-d2202cba",
+          "measuredAt": 1788876214541
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/app-home.html",
+        "interactions": [
+          {
+            "domId": "quick-task",
+            "targetPageId": "page-task-home",
+            "transitionLabel": "任务管理"
+          },
+          {
+            "domId": "btn-view-all-tasks",
+            "targetPageId": "page-task-home",
+            "transitionLabel": "查看全部任务"
+          },
+          {
+            "domId": "pending-task-1",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "查看待处理任务"
+          },
+          {
+            "domId": "pending-task-2",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "查看待处理任务"
+          },
+          {
+            "domId": "nav-task-home",
+            "targetPageId": "page-task-home",
+            "hideEdge": true,
+            "transitionLabel": "切换到任务"
+          },
+          {
+            "domId": "nav-my-profile",
+            "targetPageId": "page-my-profile",
+            "hideEdge": true,
+            "transitionLabel": "切换到我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-task-home",
+      "title": "任务管理首页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 338,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 904,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-c2ffb673",
+          "measuredAt": 1788917782025
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/task-home.html",
+        "interactions": [
+          {
+            "domId": "btn-add-task",
+            "targetPageId": "page-new-task-tower",
+            "transitionLabel": "新增任务"
+          },
+          {
+            "domId": "task-card-1",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "查看任务详情"
+          },
+          {
+            "domId": "task-card-2",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "查看任务详情"
+          },
+          {
+            "domId": "nav-my-profile",
+            "targetPageId": "page-my-profile",
+            "hideEdge": true,
+            "transitionLabel": "切换到我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-new-task-tower",
+      "title": "新增任务-关联塔",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 169,
+        "y": 1874,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-d933101a",
+          "measuredAt": 1788916896679
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/new-task-tower.html",
+        "interactions": [
+          {
+            "domId": "btn-back-home",
+            "targetPageId": "page-task-home",
+            "hideEdge": true,
+            "transitionLabel": "返回首页"
+          },
+          {
+            "domId": "btn-next-time",
+            "targetPageId": "page-new-task-time",
+            "transitionLabel": "下一步-作业时间"
+          },
+          {
+            "domId": "btn-save-tower-change",
+            "targetPageId": "page-new-task-time",
+            "transitionLabel": "保存变更后下一步"
+          },
+          {
+            "domId": "nav-task-home",
+            "targetPageId": "page-task-home",
+            "hideEdge": true,
+            "transitionLabel": "切换到任务管理"
+          },
+          {
+            "domId": "nav-my-profile",
+            "targetPageId": "page-my-profile",
+            "hideEdge": true,
+            "transitionLabel": "切换到我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-new-task-time",
+      "title": "新增任务-作业时间",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 0,
+        "y": 372,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-4b086d41",
+          "measuredAt": 1788878492843
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/new-task-time.html",
+        "interactions": [
+          {
+            "domId": "btn-back-tower",
+            "targetPageId": "page-new-task-tower",
+            "hideEdge": true,
+            "transitionLabel": "返回关联塔"
+          },
+          {
+            "domId": "btn-next-verify",
+            "targetPageId": "page-verify-personnel",
+            "transitionLabel": "下一步-人员验证"
+          },
+          {
+            "domId": "nav-task-home",
+            "targetPageId": "page-task-home",
+            "hideEdge": true,
+            "transitionLabel": "切换到任务管理"
+          },
+          {
+            "domId": "nav-my-profile",
+            "targetPageId": "page-my-profile",
+            "hideEdge": true,
+            "transitionLabel": "切换到我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-verify-personnel",
+      "title": "上塔前人员验证",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 0,
+        "y": 744,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 950,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-67aaee82",
+          "measuredAt": 1788878492843
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/verify-personnel.html",
+        "interactions": [
+          {
+            "domId": "btn-back-time",
+            "targetPageId": "page-new-task-time",
+            "hideEdge": true,
+            "transitionLabel": "返回作业时间"
+          },
+          {
+            "domId": "btn-next-climb",
+            "targetPageId": "page-climb-safety",
+            "transitionLabel": "下一步-上塔监管"
+          },
+          {
+            "domId": "nav-task-home",
+            "targetPageId": "page-task-home",
+            "hideEdge": true,
+            "transitionLabel": "切换到任务管理"
+          },
+          {
+            "domId": "nav-my-profile",
+            "targetPageId": "page-my-profile",
+            "hideEdge": true,
+            "transitionLabel": "切换到我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-climb-safety",
+      "title": "上塔过程安全监管",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 0,
+        "y": 1130,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-daad6ece",
+          "measuredAt": 1788878492843
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/climb-safety.html",
+        "interactions": [
+          {
+            "domId": "btn-back-verify",
+            "targetPageId": "page-verify-personnel",
+            "hideEdge": true,
+            "transitionLabel": "返回人员验证"
+          },
+          {
+            "domId": "btn-next-maintenance",
+            "targetPageId": "page-maintenance-monitor",
+            "transitionLabel": "下一步-维修监管"
+          },
+          {
+            "domId": "nav-task-home",
+            "targetPageId": "page-task-home",
+            "hideEdge": true,
+            "transitionLabel": "切换到任务管理"
+          },
+          {
+            "domId": "nav-my-profile",
+            "targetPageId": "page-my-profile",
+            "hideEdge": true,
+            "transitionLabel": "切换到我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-maintenance-monitor",
+      "title": "维修过程监管",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 0,
+        "y": 1502,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-c8e1076e",
+          "measuredAt": 1788878492843
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/maintenance-monitor.html",
+        "interactions": [
+          {
+            "domId": "btn-back-climb",
+            "targetPageId": "page-climb-safety",
+            "hideEdge": true,
+            "transitionLabel": "返回上塔监管"
+          },
+          {
+            "domId": "btn-finish-task",
+            "targetPageId": "page-task-home",
+            "transitionLabel": "完成任务"
+          },
+          {
+            "domId": "nav-task-home",
+            "targetPageId": "page-task-home",
+            "hideEdge": true,
+            "transitionLabel": "切换到任务管理"
+          },
+          {
+            "domId": "nav-my-profile",
+            "targetPageId": "page-my-profile",
+            "hideEdge": true,
+            "transitionLabel": "切换到我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-task-detail",
+      "title": "作业详情",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 338,
+        "y": 373,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1608,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-723f0b6a",
+          "measuredAt": 1788876214541
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/task-detail.html",
+        "interactions": [
+          {
+            "domId": "btn-back-task-home",
+            "targetPageId": "page-task-home",
+            "hideEdge": true,
+            "transitionLabel": "返回任务列表"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-my-profile",
+      "title": "我的",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 0,
+        "y": 2335,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-23a97e77",
+          "measuredAt": 1788857023806
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/my-profile.html",
+        "interactions": [
+          {
+            "domId": "nav-task-home",
+            "targetPageId": "page-task-home",
+            "hideEdge": true,
+            "transitionLabel": "切换到任务管理"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-web-task-management",
+      "title": "PC任务管理",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788881280000,
+      "canvasData": {
+        "x": 0,
+        "y": 1874,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1208,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-9b4c8bbc",
+          "measuredAt": 1788916896679
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/web-task-management.html",
+        "interactions": [
+          {
+            "domId": "btn-add-task",
+            "targetPageId": "page-new-task-tower",
+            "transitionLabel": "新增任务"
+          },
+          {
+            "domId": "btn-view-detail-1",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "查看任务详情"
+          },
+          {
+            "domId": "btn-view-detail-2",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "查看任务详情"
+          },
+          {
+            "domId": "btn-view-detail-3",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "查看任务详情"
+          },
+          {
+            "domId": "btn-view-detail-4",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "查看任务详情"
+          },
+          {
+            "domId": "btn-view-detail-5",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "查看任务详情"
+          },
+          {
+            "domId": "btn-view-detail-6",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "查看任务详情"
+          },
+          {
+            "domId": "nav-task-management",
+            "targetPageId": "page-web-task-management",
+            "hideEdge": true,
+            "transitionLabel": "刷新任务管理"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "mobile",
+    "projectName": "APP任务管理原型"
+  }
+}

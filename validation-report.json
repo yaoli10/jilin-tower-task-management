@@ -1,0 +1,153 @@
+{
+  "success": false,
+  "outcome": "terminal_stop",
+  "repairable": false,
+  "terminalViolations": [
+    "validationHistory has 6 full validation run(s), max allowed is 2"
+  ],
+  "terminalBlockingSummary": {
+    "terminalState": "validation-budget-exhausted",
+    "nextAction": "stop_and_report_blocking_summary",
+    "violations": [
+      "validationHistory has 6 full validation run(s), max allowed is 2"
+    ]
+  },
+  "skillProvenance": {
+    "name": "solo-design",
+    "version": "2026.08.06.19.15.08",
+    "version_source": "skill-release-manifest.json",
+    "runtime_skill_dir": null,
+    "recorded_at": null,
+    "expected_version": "2026.08.06.19.15.08",
+    "status": "matched",
+    "read_status": "ok"
+  },
+  "operatingMode": "free-explore",
+  "renderBlockingErrorCount": 2,
+  "softWarningCount": 5,
+  "renderBlockingErrors": [
+    "[dispatch-changed-files] project.expectedDispatches[] is required when dispatchPreflightManifest[] exists",
+    "[mobile-navigation-consistency] pages/app-home.html: mobile nav cluster is only detectable from data-dom-id/id. Add stable data-nav-key=\"<key>\" to every tab item; data-dom-id is only for click wiring and must not define active-state structure. Repair: rebuild the Page Packet with Mobile Navigation Contract and copy canonicalNavHtml. If this is post-validation repair, run repair-mobile-navigation-flow.mjs once; do not patch individual span/data-dom-id/class fragments."
+  ],
+  "errorSignatures": [
+    {
+      "errorClass": "dispatch-preflight-or-ownership",
+      "normalized": "[dispatch-changed-files] project.expectedDispatches[] is required when dispatchPreflightManifest[] exists",
+      "signature": "1863095a5236c379a633d22a8424261bfcde770ff9ab246147a2326cba87f6fd"
+    },
+    {
+      "errorClass": "mobile-navigation-consistency",
+      "normalized": "[mobile-navigation-consistency] pages/app-home.html: mobile nav cluster is only detectable from data-dom-id/id. Add stable data-nav-key=\"<key>\" to every tab item; data-dom-id is only for click wiring and must not define active-state structure. Repair: rebuild the Page Packet with Mobile Navigation Contract and copy canonicalNavHtml. If this is post-validation repair, run repair-mobile-navigation-flow.mjs once; do not patch individual span/data-dom-id/class fragments.",
+      "signature": "7c65e75972fb2ed1d9440a149738c24259d1e2c4fcfd961181ef6feea44732a9"
+    }
+  ],
+  "softWarnings": [
+    "[html-head-style] app-home.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] web-task-management.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[mobile-bottom-overlay] pages/task-detail.html: bottom fixed/absolute CTA or navigation found. Ensure it has safe-area spacing and does not cover content. Evidence: class=\"absolute left-[7px] top-2 bottom-2 w-0.5 bg-border\"",
+    "[validation-discipline] validationHistory has 6 full validation run(s), max allowed is 2",
+    "[html-quality] web-task-management.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference."
+  ],
+  "repairPlanHints": [],
+  "repairActionTable": [],
+  "errorCount": 2,
+  "warningCount": 5,
+  "errors": [
+    "[dispatch-changed-files] project.expectedDispatches[] is required when dispatchPreflightManifest[] exists",
+    "[mobile-navigation-consistency] pages/app-home.html: mobile nav cluster is only detectable from data-dom-id/id. Add stable data-nav-key=\"<key>\" to every tab item; data-dom-id is only for click wiring and must not define active-state structure. Repair: rebuild the Page Packet with Mobile Navigation Contract and copy canonicalNavHtml. If this is post-validation repair, run repair-mobile-navigation-flow.mjs once; do not patch individual span/data-dom-id/class fragments."
+  ],
+  "warnings": [
+    "[html-head-style] app-home.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] web-task-management.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[mobile-bottom-overlay] pages/task-detail.html: bottom fixed/absolute CTA or navigation found. Ensure it has safe-area spacing and does not cover content. Evidence: class=\"absolute left-[7px] top-2 bottom-2 w-0.5 bg-border\"",
+    "[validation-discipline] validationHistory has 6 full validation run(s), max allowed is 2",
+    "[html-quality] web-task-management.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference."
+  ],
+  "validationRunDisciplineStatus": {
+    "declared": true,
+    "restoreMode": false,
+    "maxFullValidationRuns": 2,
+    "validationHistoryCount": 6,
+    "repairLedgerCount": 0,
+    "softWarningsTriggerRepair": false,
+    "terminalState": "validation-budget-exhausted",
+    "nextAction": "stop_and_report_blocking_summary",
+    "violations": [
+      "validationHistory has 6 full validation run(s), max allowed is 2"
+    ],
+    "success": false
+  },
+  "terminalState": "validation-budget-exhausted",
+  "nextCheck": {
+    "type": "stop",
+    "reason": "validation-budget-exhausted",
+    "command": null
+  },
+  "repairBatch": [],
+  "repairContextPacket": {
+    "schema_version": "1.0",
+    "purpose": "terminal stop packet; do not repair",
+    "success": false,
+    "outcome": "terminal_stop",
+    "repairable": false,
+    "terminalViolations": [
+      "validationHistory has 6 full validation run(s), max allowed is 2"
+    ],
+    "terminalBlockingSummary": {
+      "terminalState": "validation-budget-exhausted",
+      "nextAction": "stop_and_report_blocking_summary",
+      "violations": [
+        "validationHistory has 6 full validation run(s), max allowed is 2"
+      ]
+    },
+    "terminalState": "validation-budget-exhausted",
+    "skillProvenance": {
+      "name": "solo-design",
+      "version": "2026.08.06.19.15.08",
+      "version_source": "skill-release-manifest.json",
+      "runtime_skill_dir": null,
+      "recorded_at": null,
+      "expected_version": "2026.08.06.19.15.08",
+      "status": "matched",
+      "read_status": "ok"
+    },
+    "renderBlockingErrorCount": 0,
+    "softWarningCount": 5,
+    "renderBlockingErrors": [],
+    "repairActionTable": [],
+    "repairPlanHints": [],
+    "nextCheck": {
+      "type": "stop",
+      "command": null,
+      "fullValidationAllowed": false,
+      "reason": "validation-budget-exhausted",
+      "nextAction": "stop_and_report_blocking_summary"
+    },
+    "forbidden": [
+      "do not repair ledger",
+      "do not delete validation state",
+      "do not rerun validation",
+      "do not read validator source"
+    ]
+  },
+  "projectFileHashes": {
+    "app-task-management-prototype.design": "e59a31d7b67583cdefe869cb6719519dbc636faa9396f1f0d1ed3c7bbb44440e",
+    "colors_and_type.css": "81d835c6e5bab1baab25f68f1fde2994c4cd321e08ceb8ff8bf24fe05d51ee2a",
+    "runtime-orchestration-summary.json": "4e35cccc98321bb4e7d3d0efafc841f04642f257c4f5b3a89defdda7ffc85022",
+    "pages/app-home.html": "5bbc0be879e97c38f85d9e565ccfa851ad7e0b5f9ce5b80c1bfe4e9248bc2e4e",
+    "pages/climb-safety.html": "92d6238a17c3d7384f94b2a570fbf3fbf863915fbe63200395792b8d9164277f",
+    "pages/login.html": "7d154c21bf9d2631874849ca10d70983c2bcb616dbe71e7bb8efe7b073bd63dd",
+    "pages/maintenance-monitor.html": "8f67d805a7c46214c5ed3323d88dc902917c21ddfe41d3b84a066a5c3865c7a2",
+    "pages/my-profile.html": "9775456dea66813e8d9ade76ad3fdaab3e5841367c96d33eb8f625ef383ca796",
+    "pages/new-task-time.html": "f3e3fb9cb9d587071dd90b6cb0fb1a6c13c1916acefa954036a4111299e9e6b8",
+    "pages/new-task-tower.html": "3e0769eeeb8fe1b92f33ed2614b6dd33df147a10713c620a0457a2e582cf52c5",
+    "pages/task-detail.html": "e777af4f71616b662bb38a9d4874ef63759b78a2a87034c11c98468ed67f0438",
+    "pages/task-home.html": "7414a430e9d492d69e1e2cd8a9c334ae1bcfc1cb6556cc86831ac7a3fa639d8a",
+    "pages/verify-personnel.html": "85aba8f414ea15ee46a1cfc699eecb82aeafb5c451f3a943fa55e60c05f86335",
+    "pages/web-task-management.html": "a71676b834cc41ee31c1c33beb92f838b36d13619ac49451be25832793b9c07f"
+  },
+  "designDir": "e:\\铁塔分省\\吉林铁塔\\app-task-management-prototype",
+  "expectedPages": null,
+  "requireInteractions": null,
+  "checkedAt": "2026-09-08T15:34:00.993Z"
+}
