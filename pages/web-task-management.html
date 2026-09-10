@@ -235,17 +235,28 @@ body {
             <i data-lucide="search" class="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2"></i>
             <input type="text" data-dom-id="search-task-input" placeholder="搜索工单编号 / 铁塔名称 / 负责人" class="h-9 w-72 rounded-lg border border-input bg-background pl-9 pr-3 howso-text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
           </div>
-          <div class="relative">
-            <i data-lucide="filter" class="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2"></i>
-            <select data-dom-id="filter-status" class="h-9 w-36 appearance-none rounded-lg border border-input bg-background pl-9 pr-8 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
-              <option value="">全部状态</option>
-              <option value="pending">未开始</option>
-              <option value="progress">进行中</option>
-              <option value="review">待审核</option>
-              <option value="rejected">审核不通过</option>
-              <option value="completed">已完成</option>
-            </select>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          <div class="flex items-center gap-2">
+            <div class="relative">
+              <i data-lucide="filter" class="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2"></i>
+              <select data-dom-id="filter-audit-status" class="h-9 w-36 appearance-none rounded-lg border border-input bg-background pl-9 pr-8 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                <option value="">全部审批状态</option>
+                <option value="none">无需审批</option>
+                <option value="review">待审批</option>
+                <option value="approved">审批通过</option>
+                <option value="rejected">审批不通过</option>
+              </select>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+            </div>
+            <div class="relative">
+              <i data-lucide="filter" class="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2"></i>
+              <select data-dom-id="filter-exec-status" class="h-9 w-36 appearance-none rounded-lg border border-input bg-background pl-9 pr-8 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                <option value="">全部执行状态</option>
+                <option value="pending">未开始</option>
+                <option value="progress">进行中</option>
+                <option value="completed">已完成</option>
+              </select>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+            </div>
           </div>
           <button type="button" data-dom-id="btn-add-task" onclick="openAddTaskModal()" class="h-9 px-4 rounded-lg bg-primary text-primary-foreground howso-text-sm howso-font-medium flex items-center gap-1.5 hover:opacity-90 transition-opacity">
             <i data-lucide="plus" class="w-4 h-4"></i>
@@ -363,19 +374,21 @@ body {
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">作业单位</th>
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">作业时间</th>
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">预计时长</th>
-                  <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">状态</th>
+                  <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">审批状态</th>
+                  <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">执行状态</th>
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">关联设备</th>
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider text-right">操作</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-border">
-                <tr class="table-row transition-colors">
+                <tr class="table-row transition-colors" data-audit-status="none">
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">前进大街基站设备巡检</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">长春-朝阳-前进大街基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-CC-CY-0231</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">长春市通信工程维护有限公司</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-08 09:00 ~ 11:00</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2 小时 0 分钟</td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-gray-500); background-color: rgba(100,116,139,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-gray-500);"></span>无需审批</span></td>
                   <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-warning);"></span>进行中</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video" class="w-3.5 h-3.5 text-success" style="color: var(--howso-state-success);"></i>执法记录仪 #A001 在线</span></td>
                   <td class="px-5 py-4">
@@ -386,13 +399,14 @@ body {
                     </div>
                   </td>
                 </tr>
-                <tr class="table-row transition-colors">
+                <tr class="table-row transition-colors" data-audit-status="approved">
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">松江路基站 RRU 检修</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">吉林-丰满-松江路基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-JL-FM-0087</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">吉林市铁塔维护中心</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-08 13:30 ~ 15:30</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2 小时 0 分钟</td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-success);"></span>审批通过</span></td>
                   <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-success);"></span>已完成</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video" class="w-3.5 h-3.5 text-success" style="color: var(--howso-state-success);"></i>执法记录仪 #B012 在线</span></td>
                   <td class="px-5 py-4">
@@ -403,13 +417,14 @@ body {
                     </div>
                   </td>
                 </tr>
-                <tr class="table-row transition-colors">
+                <tr class="table-row transition-colors" data-audit-status="none">
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">英雄大路基站上塔作业</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">四平-铁西-英雄大路基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-SP-TX-0156</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">四平市基站运维队</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-08 08:00 ~ 08:30</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">0 小时 30 分钟</td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-gray-500); background-color: rgba(100,116,139,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-gray-500);"></span>无需审批</span></td>
                   <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-info); background-color: rgba(59,130,246,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-info);"></span>未开始</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video-off" class="w-3.5 h-3.5 text-muted-foreground"></i>执法记录仪 #C203 离线</span></td>
                   <td class="px-5 py-4">
@@ -420,14 +435,15 @@ body {
                     </div>
                   </td>
                 </tr>
-                <tr class="table-row transition-colors" data-status="review">
+                <tr class="table-row transition-colors" data-audit-status="review">
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">公园路基站维护作业</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">延边-延吉-公园路基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-YB-YJ-0422</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">延边州移动通信维护部</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-07 14:00 ~ 16:30</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2 小时 30 分钟</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-warning);"></span>待审核</span></td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-warning);"></span>待审批</span></td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-success);"></span>已完成</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video" class="w-3.5 h-3.5 text-success" style="color: var(--howso-state-success);"></i>执法记录仪 #D088 在线</span></td>
                   <td class="px-5 py-4">
                     <div class="flex items-center justify-end gap-2">
@@ -438,14 +454,15 @@ body {
                     </div>
                   </td>
                 </tr>
-                <tr class="table-row transition-colors">
+                <tr class="table-row transition-colors" data-audit-status="rejected">
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">建设大街基站天线调试</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">通化-东昌-建设大街基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-TH-DC-0319</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">通化市铁塔作业班组</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-08 10:00 ~ 12:00</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2 小时 0 分钟</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-error); background-color: rgba(239,68,68,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-error);"></span>审核不通过</span></td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-error); background-color: rgba(239,68,68,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-error);"></span>审批不通过</span></td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-warning);"></span>进行中</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video" class="w-3.5 h-3.5 text-success" style="color: var(--howso-state-success);"></i>执法记录仪 #E156 在线</span></td>
                   <td class="px-5 py-4">
                     <div class="flex items-center justify-end gap-2">
@@ -455,13 +472,14 @@ body {
                     </div>
                   </td>
                 </tr>
-                <tr class="table-row transition-colors">
+                <tr class="table-row transition-colors" data-audit-status="approved">
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">青年南街基站例行巡检</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">白城-洮北-青年南街基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-BC-TB-0098</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">长春市通信工程维护有限公司</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-08 07:30 ~ 08:00</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">0 小时 30 分钟</td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-success);"></span>审批通过</span></td>
                   <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-success);"></span>已完成</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video" class="w-3.5 h-3.5 text-success" style="color: var(--howso-state-success);"></i>执法记录仪 #F067 在线</span></td>
                   <td class="px-5 py-4">
@@ -725,6 +743,7 @@ body {
           <td class="px-5 py-4 howso-text-sm text-foreground">${unitMap[task.workUnit] || task.workUnit}</td>
           <td class="px-5 py-4 howso-text-sm text-muted-foreground">${task.workTime.replace('T',' ')}</td>
           <td class="px-5 py-4 howso-text-sm text-muted-foreground">-</td>
+          <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-gray-500); background-color: rgba(100,116,139,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-gray-500);"></span>无需审批</span></td>
           <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-info); background-color: rgba(59,130,246,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-info);"></span>未开始</span></td>
           <td class="px-5 py-4 howso-text-sm text-muted-foreground">-</td>
           <td class="px-5 py-4">
@@ -763,14 +782,18 @@ body {
       const workUnit = cells[3]?.innerText.trim() || '-';
       const workTime = cells[4]?.innerText.trim() || '-';
       const duration = cells[5]?.innerText.trim() || '-';
-      const statusHtml = cells[6]?.innerHTML.trim() || '-';
-      const device = cells[7]?.innerText.trim() || '-';
+      const auditStatusHtml = cells[6]?.innerHTML.trim() || '-';
+      const execStatusHtml = cells[7]?.innerHTML.trim() || '-';
+      const device = cells[8]?.innerText.trim() || '-';
 
       const html = `
         <div class="bg-muted/30 border border-border rounded-xl p-4">
           <div class="flex items-center justify-between mb-3">
             <span class="howso-text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-md howso-font-medium">RW-${towerCode.replace(/[^A-Za-z0-9]/g,'').slice(-8)}</span>
-            <span>${statusHtml}</span>
+            <div class="flex items-center gap-2">
+              <span>${auditStatusHtml}</span>
+              <span>${execStatusHtml}</span>
+            </div>
           </div>
           <h3 class="howso-text-xl howso-font-semibold text-foreground">${towerName}</h3>
           <p class="howso-text-sm text-muted-foreground mt-1">塔址编号：${towerCode}</p>
@@ -968,19 +991,19 @@ body {
         document.getElementById('review-comment').focus();
         return false;
       }
-      const statusCell = currentReviewRow.querySelectorAll('td')[6];
+      const auditStatusCell = currentReviewRow.querySelectorAll('td')[6];
       const reviewBtn = currentReviewRow.querySelector('[data-dom-id^="btn-review-"]');
-      if (statusCell) {
+      if (auditStatusCell) {
         if (result === 'approved') {
-          statusCell.innerHTML = '<span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-success);"></span>已完成</span>';
-          currentReviewRow.setAttribute('data-status', 'completed');
+          auditStatusCell.innerHTML = '<span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-success);"></span>审批通过</span>';
+          currentReviewRow.setAttribute('data-audit-status', 'approved');
           const statCompleted = document.querySelector('[data-dom-id="stat-completed"] .howso-text-2xl');
           const statPending = document.querySelector('[data-dom-id="stat-pending"] .howso-text-2xl');
           if (statCompleted) statCompleted.textContent = parseInt(statCompleted.textContent || '0') + 1;
           if (statPending) statPending.textContent = Math.max(0, parseInt(statPending.textContent || '0') - 1);
         } else {
-          statusCell.innerHTML = '<span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-error); background-color: rgba(239,68,68,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-error);"></span>审核不通过</span>';
-          currentReviewRow.setAttribute('data-status', 'rejected');
+          auditStatusCell.innerHTML = '<span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-error); background-color: rgba(239,68,68,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-error);"></span>审批不通过</span>';
+          currentReviewRow.setAttribute('data-audit-status', 'rejected');
           const statPending = document.querySelector('[data-dom-id="stat-pending"] .howso-text-2xl');
           if (statPending) statPending.textContent = Math.max(0, parseInt(statPending.textContent || '0') - 1);
         }
