@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新增任务（1/3）</title>
+    <title>新增任务（1/2）</title>
     <style id="theme-vars">
 :root {
   --brand-prefix: howso;
@@ -187,10 +187,10 @@ body {
 <body class="min-h-screen font-sans antialiased">
   <div class="max-w-[430px] mx-auto min-h-screen flex flex-col bg-background">
     <header class="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border px-4 py-3 flex items-center gap-3">
-      <button type="button" data-dom-id="btn-back-home" class="w-9 h-9 rounded-lg flex items-center justify-center text-foreground hover:bg-muted active:bg-muted/80 transition-colors" aria-label="返回">
+      <button type="button" data-dom-id="btn-back-home" onclick="location.href='task-home.html'" class="w-9 h-9 rounded-lg flex items-center justify-center text-foreground hover:bg-muted active:bg-muted/80 transition-colors" aria-label="返回">
         <i data-lucide="arrow-left" class="w-5 h-5"></i>
       </button>
-      <h1 class="howso-text-lg howso-font-semibold text-foreground flex-1 text-center pr-12">新增任务（1/3）</h1>
+      <h1 class="howso-text-lg howso-font-semibold text-foreground flex-1 text-center pr-12">新增任务（1/2）</h1>
     </header>
 
     <main class="flex-1 p-4 space-y-5 overflow-y-auto">
@@ -216,11 +216,11 @@ body {
       <section class="bg-card border border-border rounded-xl p-4 shadow-sm space-y-3" data-dom-id="task-name-card">
         <div class="flex items-center justify-between">
           <h2 class="howso-text-base howso-font-semibold text-foreground">任务名称</h2>
-          <span class="howso-text-xs howso-text-muted">必填</span>
+          <span class="howso-text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-md howso-font-medium">PC端自动同步</span>
         </div>
-        <div class="space-y-2">
-          <label for="task-name" class="howso-text-sm howso-font-medium text-foreground">请输入任务名称</label>
-          <input type="text" id="task-name" data-dom-id="input-task-name" placeholder="例如：前进大街基站 RRU 设备检修" class="w-full rounded-xl border border-input bg-background px-4 py-3 howso-text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+        <div class="p-3 rounded-xl bg-muted/30 border border-border">
+          <p id="task-name-display" class="howso-text-base text-foreground howso-font-medium">前进大街基站设备巡检</p>
+          <p class="howso-text-xs howso-text-muted mt-1">由 PC 端创建任务时设置，APP 端不可修改</p>
         </div>
       </section>
 
@@ -245,27 +245,15 @@ body {
       </section>
 
       <section class="pt-2 space-y-3">
-        <a href="new-task-time.html" data-dom-id="btn-next-time" class="block w-full py-3.5 rounded-xl bg-primary text-primary-foreground howso-text-base howso-font-semibold shadow-md active:scale-[0.98] transition-transform text-center">
+        <a href="verify-personnel.html" data-dom-id="btn-next-time" class="block w-full py-3.5 rounded-xl bg-primary text-primary-foreground howso-text-base howso-font-semibold shadow-md active:scale-[0.98] transition-transform text-center">
           位置正确，下一步
         </a>
-        <button type="button" data-dom-id="btn-correct-tower" class="w-full py-3.5 rounded-xl bg-card border border-border text-foreground howso-text-base howso-font-medium active:bg-muted transition-colors">
+        <button type="button" data-dom-id="btn-correct-tower" onclick="openTowerChangeModal()" class="w-full py-3.5 rounded-xl bg-card border border-border text-foreground howso-text-base howso-font-medium active:bg-muted transition-colors">
           位置不对，申请变更
         </button>
       </section>
     </main>
 
-    <nav class="shrink-0 bg-card border-t border-border px-6 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
-      <div class="flex justify-around items-center">
-        <a href="task-home.html" data-dom-id="nav-task-home" class="flex flex-col items-center gap-1 py-2 px-4 text-primary">
-          <i data-lucide="home" class="w-5 h-5"></i>
-          <span class="howso-text-xs howso-font-medium">任务管理</span>
-        </a>
-        <a href="my-profile.html" data-dom-id="nav-my-profile" class="flex flex-col items-center gap-1 py-2 px-4 text-muted-foreground">
-          <i data-lucide="user" class="w-5 h-5"></i>
-          <span class="howso-text-xs howso-font-medium">我的</span>
-        </a>
-      </div>
-    </nav>
   </div>
 
   <div id="tower-change-modal" class="hidden fixed inset-0 z-50 items-end sm:items-center justify-center bg-black/50 p-4" aria-hidden="true">
@@ -309,15 +297,48 @@ body {
   </div>
 
   <script>
+    function openTowerChangeModal() {
+      const modal = document.getElementById('tower-change-modal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      modal.setAttribute('aria-hidden','false');
+    }
+    (function(){
+      const saved = localStorage.getItem('howso_pc_new_task');
+      if (saved) {
+        try {
+          const task = JSON.parse(saved);
+          const towerMap = {
+            'JL-CC-CY-0231': {name:'长春-朝阳-前进大街基站', code:'JL-CC-CY-0231'},
+            'JL-JL-FM-0087': {name:'吉林-丰满-松江路基站', code:'JL-JL-FM-0087'},
+            'JL-SP-TX-0156': {name:'四平-铁西-英雄大路基站', code:'JL-SP-TX-0156'},
+            'JL-YB-YJ-0422': {name:'延边-延吉-公园路基站', code:'JL-YB-YJ-0422'},
+            'JL-TH-DC-0319': {name:'通化-东昌-建设大街基站', code:'JL-TH-DC-0319'},
+            'JL-BC-TB-0098': {name:'白城-洮北-青年南街基站', code:'JL-BC-TB-0098'}
+          };
+          const nameDisplay = document.getElementById('task-name-display');
+          if (nameDisplay && task.taskName) {
+            nameDisplay.textContent = task.taskName;
+          }
+          const tower = towerMap[task.relatedTower];
+          if (tower) {
+            const card = document.querySelector('[data-dom-id="linked-tower-card"]');
+            if (card) {
+              const badge = card.querySelector('.howso-text-xs.howso-text-muted');
+              if (badge) badge.textContent = 'PC端已同步';
+              const nameEl = card.querySelector('p.howso-text-base.howso-font-medium');
+              const codeEl = card.querySelector('p.howso-text-sm.howso-text-muted');
+              if (nameEl) nameEl.textContent = tower.name;
+              if (codeEl) codeEl.textContent = '编号：' + tower.code;
+            }
+          }
+        } catch (e) {}
+      }
+    })();
     (function(){
       const modal = document.getElementById('tower-change-modal');
-      const openBtn = document.querySelector('[data-dom-id="btn-correct-tower"]');
       const closeBtn = document.querySelector('[data-dom-id="btn-close-tower-modal"]');
-      openBtn.addEventListener('click', function(){
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        modal.setAttribute('aria-hidden','false');
-      });
       closeBtn.addEventListener('click', function(){
         modal.classList.add('hidden');
         modal.classList.remove('flex');
