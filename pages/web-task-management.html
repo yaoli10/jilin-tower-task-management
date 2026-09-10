@@ -237,19 +237,20 @@ body {
           </div>
           <div class="relative">
             <i data-lucide="filter" class="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2"></i>
-            <select data-dom-id="filter-status" class="h-9 w-32 appearance-none rounded-lg border border-input bg-background pl-9 pr-8 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+            <select data-dom-id="filter-status" class="h-9 w-36 appearance-none rounded-lg border border-input bg-background pl-9 pr-8 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
               <option value="">全部状态</option>
-              <option value="pending">待开始</option>
+              <option value="pending">未开始</option>
               <option value="progress">进行中</option>
+              <option value="review">待审核</option>
+              <option value="rejected">审核不通过</option>
               <option value="completed">已完成</option>
-              <option value="overdue">已逾期</option>
             </select>
             <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
           </div>
-          <a href="new-task-tower.html" data-dom-id="btn-add-task" class="h-9 px-4 rounded-lg bg-primary text-primary-foreground howso-text-sm howso-font-medium flex items-center gap-1.5 hover:opacity-90 transition-opacity">
+          <button type="button" data-dom-id="btn-add-task" onclick="openAddTaskModal()" class="h-9 px-4 rounded-lg bg-primary text-primary-foreground howso-text-sm howso-font-medium flex items-center gap-1.5 hover:opacity-90 transition-opacity">
             <i data-lucide="plus" class="w-4 h-4"></i>
             <span>新增任务</span>
-          </a>
+          </button>
           <button type="button" class="relative w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-muted transition-colors" aria-label="通知">
             <i data-lucide="bell" class="w-5 h-5"></i>
             <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error" style="background-color: var(--howso-state-error);"></span>
@@ -294,7 +295,7 @@ body {
               <i data-lucide="clock" class="w-6 h-6"></i>
             </div>
             <div>
-              <p class="howso-text-sm text-muted-foreground">待处理</p>
+              <p class="howso-text-sm text-muted-foreground">待审核</p>
               <p class="howso-text-2xl howso-font-bold text-foreground mt-0.5">3</p>
             </div>
           </div>
@@ -359,7 +360,7 @@ body {
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">任务名称</th>
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">铁塔名称</th>
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">铁塔编号</th>
-                  <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">当前阶段</th>
+                  <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">作业单位</th>
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">作业时间</th>
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">预计时长</th>
                   <th class="px-5 py-3.5 howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">状态</th>
@@ -372,17 +373,16 @@ body {
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">前进大街基站设备巡检</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">长春-朝阳-前进大街基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-CC-CY-0231</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1.5 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);"><i data-lucide="hard-hat" class="w-3 h-3"></i>执行</span></td>
+                  <td class="px-5 py-4 howso-text-sm text-foreground">长春市通信工程维护有限公司</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-08 09:00 ~ 11:00</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2 小时 0 分钟</td>
                   <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-warning);"></span>进行中</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video" class="w-3.5 h-3.5 text-success" style="color: var(--howso-state-success);"></i>执法记录仪 #A001 在线</span></td>
                   <td class="px-5 py-4">
                     <div class="flex items-center justify-end gap-2">
-                      <a href="task-detail.html" data-dom-id="btn-view-detail-1" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></a>
-                      <button type="button" data-dom-id="btn-assign-1" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-warning hover:bg-warning/10 transition-colors" title="派单" style="--howso-state-warning: #f59e0b;"><i data-lucide="send" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-edit-1" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-delete-1" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除" style="--howso-state-error: #ef4444;"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-view-detail-1" onclick="openTaskDetailModal(this)" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-edit-1" onclick="openActionModal(this, '编辑')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-delete-1" onclick="openActionModal(this, '删除')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除" style="--howso-state-error: #ef4444;"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                   </td>
                 </tr>
@@ -390,17 +390,16 @@ body {
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">松江路基站 RRU 检修</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">吉林-丰满-松江路基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-JL-FM-0087</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1.5 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><i data-lucide="flag" class="w-3 h-3"></i>完成</span></td>
+                  <td class="px-5 py-4 howso-text-sm text-foreground">吉林市铁塔维护中心</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-08 13:30 ~ 15:30</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2 小时 0 分钟</td>
                   <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-success);"></span>已完成</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video" class="w-3.5 h-3.5 text-success" style="color: var(--howso-state-success);"></i>执法记录仪 #B012 在线</span></td>
                   <td class="px-5 py-4">
                     <div class="flex items-center justify-end gap-2">
-                      <a href="task-detail.html" data-dom-id="btn-view-detail-2" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></a>
-                      <button type="button" data-dom-id="btn-assign-2" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-warning hover:bg-warning/10 transition-colors" title="派单"><i data-lucide="send" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-edit-2" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-delete-2" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-view-detail-2" onclick="openTaskDetailModal(this)" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-edit-2" onclick="openActionModal(this, '编辑')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-delete-2" onclick="openActionModal(this, '删除')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                   </td>
                 </tr>
@@ -408,35 +407,34 @@ body {
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">英雄大路基站上塔作业</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">四平-铁西-英雄大路基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-SP-TX-0156</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1.5 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-info); background-color: rgba(59,130,246,0.1);"><i data-lucide="send" class="w-3 h-3"></i>派发</span></td>
+                  <td class="px-5 py-4 howso-text-sm text-foreground">四平市基站运维队</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-08 08:00 ~ 08:30</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">0 小时 30 分钟</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-info); background-color: rgba(59,130,246,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-info);"></span>待开始</span></td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-info); background-color: rgba(59,130,246,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-info);"></span>未开始</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video-off" class="w-3.5 h-3.5 text-muted-foreground"></i>执法记录仪 #C203 离线</span></td>
                   <td class="px-5 py-4">
                     <div class="flex items-center justify-end gap-2">
-                      <a href="task-detail.html" data-dom-id="btn-view-detail-3" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></a>
-                      <button type="button" data-dom-id="btn-assign-3" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-warning hover:bg-warning/10 transition-colors" title="派单"><i data-lucide="send" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-edit-3" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-delete-3" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-view-detail-3" onclick="openTaskDetailModal(this)" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-edit-3" onclick="openActionModal(this, '编辑')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-delete-3" onclick="openActionModal(this, '删除')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                   </td>
                 </tr>
-                <tr class="table-row transition-colors">
+                <tr class="table-row transition-colors" data-status="review">
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">公园路基站维护作业</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">延边-延吉-公园路基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-YB-YJ-0422</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1.5 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);"><i data-lucide="hard-hat" class="w-3 h-3"></i>执行</span></td>
+                  <td class="px-5 py-4 howso-text-sm text-foreground">延边州移动通信维护部</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-07 14:00 ~ 16:30</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2 小时 30 分钟</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-error); background-color: rgba(239,68,68,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-error);"></span>已逾期</span></td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-warning);"></span>待审核</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video" class="w-3.5 h-3.5 text-success" style="color: var(--howso-state-success);"></i>执法记录仪 #D088 在线</span></td>
                   <td class="px-5 py-4">
                     <div class="flex items-center justify-end gap-2">
-                      <a href="task-detail.html" data-dom-id="btn-view-detail-4" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></a>
-                      <button type="button" data-dom-id="btn-assign-4" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-warning hover:bg-warning/10 transition-colors" title="派单"><i data-lucide="send" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-edit-4" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-delete-4" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-review-4" onclick="openReviewModal(this)" class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-[rgba(245,158,11,0.1)] transition-colors" title="审核" style="color: var(--howso-state-warning);"><i data-lucide="clipboard-check" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-view-detail-4" onclick="openTaskDetailModal(this)" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-edit-4" onclick="openActionModal(this, '编辑')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-delete-4" onclick="openActionModal(this, '删除')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                   </td>
                 </tr>
@@ -444,17 +442,16 @@ body {
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">建设大街基站天线调试</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">通化-东昌-建设大街基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-TH-DC-0319</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1.5 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);"><i data-lucide="hard-hat" class="w-3 h-3"></i>执行</span></td>
+                  <td class="px-5 py-4 howso-text-sm text-foreground">通化市铁塔作业班组</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-08 10:00 ~ 12:00</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2 小时 0 分钟</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-warning);"></span>进行中</span></td>
+                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-error); background-color: rgba(239,68,68,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-error);"></span>审核不通过</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video" class="w-3.5 h-3.5 text-success" style="color: var(--howso-state-success);"></i>执法记录仪 #E156 在线</span></td>
                   <td class="px-5 py-4">
                     <div class="flex items-center justify-end gap-2">
-                      <a href="task-detail.html" data-dom-id="btn-view-detail-5" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></a>
-                      <button type="button" data-dom-id="btn-assign-5" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-warning hover:bg-warning/10 transition-colors" title="派单"><i data-lucide="send" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-edit-5" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-delete-5" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-view-detail-5" onclick="openTaskDetailModal(this)" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-edit-5" onclick="openActionModal(this, '编辑')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-delete-5" onclick="openActionModal(this, '删除')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                   </td>
                 </tr>
@@ -462,17 +459,16 @@ body {
                   <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">青年南街基站例行巡检</td>
                   <td class="px-5 py-4 howso-text-sm text-foreground">白城-洮北-青年南街基站</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">JL-BC-TB-0098</td>
-                  <td class="px-5 py-4"><span class="inline-flex items-center gap-1.5 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><i data-lucide="flag" class="w-3 h-3"></i>完成</span></td>
+                  <td class="px-5 py-4 howso-text-sm text-foreground">长春市通信工程维护有限公司</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">2025-09-08 07:30 ~ 08:00</td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground">0 小时 30 分钟</td>
                   <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-success);"></span>已完成</span></td>
                   <td class="px-5 py-4 howso-text-sm text-muted-foreground"><span class="inline-flex items-center gap-1.5"><i data-lucide="video" class="w-3.5 h-3.5 text-success" style="color: var(--howso-state-success);"></i>执法记录仪 #F067 在线</span></td>
                   <td class="px-5 py-4">
                     <div class="flex items-center justify-end gap-2">
-                      <a href="task-detail.html" data-dom-id="btn-view-detail-6" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></a>
-                      <button type="button" data-dom-id="btn-assign-6" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-warning hover:bg-warning/10 transition-colors" title="派单"><i data-lucide="send" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-edit-6" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
-                      <button type="button" data-dom-id="btn-delete-6" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-view-detail-6" onclick="openTaskDetailModal(this)" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-edit-6" onclick="openActionModal(this, '编辑')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
+                      <button type="button" data-dom-id="btn-delete-6" onclick="openActionModal(this, '删除')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                   </td>
                 </tr>
@@ -496,6 +492,509 @@ body {
       </main>
     </div>
   </div>
+  <!-- 新增任务弹窗 -->
+  <div id="add-task-modal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 p-4" aria-hidden="true">
+    <div class="w-full max-w-2xl bg-card rounded-xl shadow-xl overflow-hidden">
+      <div class="px-5 py-4 border-b border-border flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="clipboard-plus" class="w-5 h-5 text-primary"></i>
+          <h2 class="howso-text-lg howso-font-semibold text-foreground">新增任务</h2>
+        </div>
+        <button type="button" onclick="closeAddTaskModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-muted transition-colors" aria-label="关闭">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <form id="new-task-form" class="p-6 grid grid-cols-2 gap-6" onsubmit="return handleCreateTask(event)">
+        <div class="col-span-2">
+          <label class="block howso-text-sm howso-font-medium text-foreground mb-2" for="task-name">任务名称 <span class="text-error" style="color: var(--howso-state-error);">*</span></label>
+          <div class="relative">
+            <i data-lucide="clipboard-list" class="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input type="text" id="task-name" name="taskName" data-dom-id="input-task-name" placeholder="请输入任务名称" required class="h-10 w-full rounded-lg border border-input bg-background pl-9 pr-3 howso-text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+          </div>
+        </div>
+        <div>
+          <label class="block howso-text-sm howso-font-medium text-foreground mb-2" for="work-unit">作业单位 <span class="text-error" style="color: var(--howso-state-error);">*</span></label>
+          <div class="relative">
+            <i data-lucide="building-2" class="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <select id="work-unit" name="workUnit" data-dom-id="select-work-unit" required class="h-10 w-full appearance-none rounded-lg border border-input bg-background pl-9 pr-8 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+              <option value="">请选择作业单位</option>
+              <option value="unit-1">长春市通信工程维护有限公司</option>
+              <option value="unit-2">吉林市铁塔维护中心</option>
+              <option value="unit-3">四平市基站运维队</option>
+              <option value="unit-4">延边州移动通信维护部</option>
+              <option value="unit-5">通化市铁塔作业班组</option>
+            </select>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          </div>
+        </div>
+        <div>
+          <label class="block howso-text-sm howso-font-medium text-foreground mb-2" for="work-time">作业时间 <span class="text-error" style="color: var(--howso-state-error);">*</span></label>
+          <div class="relative">
+            <i data-lucide="calendar-clock" class="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input type="datetime-local" id="work-time" name="workTime" data-dom-id="input-work-time" required class="h-10 w-full rounded-lg border border-input bg-background pl-9 pr-3 howso-text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+          </div>
+          <p class="mt-1.5 howso-text-xs text-muted-foreground">请选择任务计划开始时间</p>
+        </div>
+        <div class="col-span-2">
+          <label class="block howso-text-sm howso-font-medium text-foreground mb-2" for="related-tower">关联塔 <span class="text-error" style="color: var(--howso-state-error);">*</span></label>
+          <div class="relative">
+            <i data-lucide="tower-control" class="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <select id="related-tower" name="relatedTower" data-dom-id="select-related-tower" required class="h-10 w-full appearance-none rounded-lg border border-input bg-background pl-9 pr-8 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+              <option value="">请选择关联铁塔</option>
+              <option value="JL-CC-CY-0231">长春-朝阳-前进大街基站（JL-CC-CY-0231）</option>
+              <option value="JL-JL-FM-0087">吉林-丰满-松江路基站（JL-JL-FM-0087）</option>
+              <option value="JL-SP-TX-0156">四平-铁西-英雄大路基站（JL-SP-TX-0156）</option>
+              <option value="JL-YB-YJ-0422">延边-延吉-公园路基站（JL-YB-YJ-0422）</option>
+              <option value="JL-TH-DC-0319">通化-东昌-建设大街基站（JL-TH-DC-0319）</option>
+              <option value="JL-BC-TB-0098">白城-洮北-青年南街基站（JL-BC-TB-0098）</option>
+            </select>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          </div>
+          <p class="mt-1.5 howso-text-xs text-muted-foreground">APP 端执行任务时将校验当前位置与所选铁塔经纬度偏差</p>
+        </div>
+        <div class="col-span-2 flex items-center justify-end gap-3 pt-2">
+          <button type="button" onclick="closeAddTaskModal()" class="h-10 px-5 rounded-lg border border-border bg-card text-foreground howso-text-sm howso-font-medium flex items-center gap-1.5 hover:bg-muted transition-colors">
+            <i data-lucide="x" class="w-4 h-4"></i>
+            <span>取消</span>
+          </button>
+          <button type="submit" data-dom-id="btn-create-task" class="h-10 px-5 rounded-lg bg-primary text-primary-foreground howso-text-sm howso-font-medium flex items-center gap-1.5 hover:bg-primary/90 transition-colors">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>创建任务</span>
+          </button>
+        </div>
+      </form>
+      <div id="create-success" class="hidden mx-6 mb-6 bg-success/10 border border-success/20 rounded-xl p-4 flex items-start gap-3" style="background-color: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.2);">
+        <i data-lucide="circle-check" class="w-5 h-5 mt-0.5" style="color: var(--howso-state-success);"></i>
+        <div>
+          <p class="howso-text-sm howso-font-medium" style="color: var(--howso-state-success);">任务创建成功</p>
+          <p class="howso-text-xs text-muted-foreground mt-0.5">任务已生成，可在 APP 任务列表中查看。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 任务详情弹窗 -->
+  <div id="task-detail-modal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 p-4" aria-hidden="true">
+    <div class="w-full max-w-xl bg-card rounded-xl shadow-xl overflow-hidden">
+      <div class="px-5 py-4 border-b border-border flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="clipboard-list" class="w-5 h-5 text-primary"></i>
+          <h2 class="howso-text-lg howso-font-semibold text-foreground">任务详情</h2>
+        </div>
+        <button type="button" onclick="closeTaskDetailModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-muted transition-colors" aria-label="关闭">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="task-detail-content" class="p-6 space-y-5 max-h-[70vh] overflow-y-auto">
+        <!-- 动态填充 -->
+      </div>
+      <div class="px-5 py-4 border-t border-border flex justify-end">
+        <button type="button" onclick="closeTaskDetailModal()" class="h-10 px-5 rounded-lg border border-border bg-card text-foreground howso-text-sm howso-font-medium hover:bg-muted transition-colors">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 操作确认弹窗 -->
+  <div id="action-modal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 p-4" aria-hidden="true">
+    <div class="w-full max-w-md bg-card rounded-xl shadow-xl overflow-hidden">
+      <div class="px-5 py-4 border-b border-border flex items-center gap-2">
+        <i data-lucide="alert-circle" class="w-5 h-5 text-primary"></i>
+        <h2 id="action-modal-title" class="howso-text-lg howso-font-semibold text-foreground">操作确认</h2>
+      </div>
+      <div class="p-6">
+        <p id="action-modal-message" class="howso-text-sm text-foreground">确认执行该操作？</p>
+      </div>
+      <div class="px-5 py-4 border-t border-border flex items-center justify-end gap-3">
+        <button type="button" onclick="closeActionModal()" class="h-10 px-5 rounded-lg border border-border bg-card text-foreground howso-text-sm howso-font-medium hover:bg-muted transition-colors">取消</button>
+        <button type="button" onclick="confirmAction()" class="h-10 px-5 rounded-lg bg-primary text-primary-foreground howso-text-sm howso-font-medium hover:bg-primary/90 transition-colors">确认</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 任务审核弹窗 -->
+  <div id="review-modal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 p-4" aria-hidden="true">
+    <div class="w-full max-w-xl bg-card rounded-xl shadow-xl overflow-hidden">
+      <div class="px-5 py-4 border-b border-border flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="clipboard-check" class="w-5 h-5" style="color: var(--howso-state-warning);"></i>
+          <h2 class="howso-text-lg howso-font-semibold text-foreground">任务审核</h2>
+        </div>
+        <button type="button" onclick="closeReviewModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-muted transition-colors" aria-label="关闭">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <form id="review-form" class="p-6 space-y-5" onsubmit="return handleReviewSubmit(event)">
+        <div class="bg-muted/30 border border-border rounded-xl p-4">
+          <p class="howso-text-xs text-muted-foreground mb-1">任务名称</p>
+          <p id="review-task-name" class="howso-text-base howso-font-semibold text-foreground">-</p>
+          <div class="flex items-center gap-4 mt-3">
+            <div>
+              <p class="howso-text-xs text-muted-foreground">铁塔名称</p>
+              <p id="review-tower-name" class="howso-text-sm text-foreground mt-0.5">-</p>
+            </div>
+            <div>
+              <p class="howso-text-xs text-muted-foreground">铁塔编号</p>
+              <p id="review-tower-code" class="howso-text-sm text-foreground mt-0.5">-</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <label class="block howso-text-sm howso-font-medium text-foreground">审核结果 <span class="text-error" style="color: var(--howso-state-error);">*</span></label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="cursor-pointer relative">
+              <input type="radio" name="reviewResult" value="approved" class="peer sr-only" checked>
+              <div class="rounded-xl border border-border bg-background p-4 text-center hover:bg-muted/50 peer-checked:border-[#10b981] peer-checked:bg-[rgba(16,185,129,0.1)] transition-colors">
+                <i data-lucide="check-circle-2" class="w-6 h-6 mx-auto mb-1.5" style="color: var(--howso-state-success);"></i>
+                <p class="howso-text-sm howso-font-semibold" style="color: var(--howso-state-success);">审核通过</p>
+              </div>
+            </label>
+            <label class="cursor-pointer relative">
+              <input type="radio" name="reviewResult" value="rejected" class="peer sr-only">
+              <div class="rounded-xl border border-border bg-background p-4 text-center hover:bg-muted/50 peer-checked:border-[#ef4444] peer-checked:bg-[rgba(239,68,68,0.1)] transition-colors">
+                <i data-lucide="x-circle" class="w-6 h-6 mx-auto mb-1.5" style="color: var(--howso-state-error);"></i>
+                <p class="howso-text-sm howso-font-semibold" style="color: var(--howso-state-error);">审核不通过</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="block howso-text-sm howso-font-medium text-foreground" for="review-comment">审核意见</label>
+          <textarea id="review-comment" name="reviewComment" rows="4" placeholder="请填写审核意见，不通过时必须说明原因…" class="w-full rounded-xl border border-input bg-background px-4 py-3 howso-text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" onclick="closeReviewModal()" class="h-10 px-5 rounded-lg border border-border bg-card text-foreground howso-text-sm howso-font-medium hover:bg-muted transition-colors">取消</button>
+          <button type="submit" data-dom-id="btn-confirm-review" class="h-10 px-5 rounded-lg bg-primary text-primary-foreground howso-text-sm howso-font-medium hover:bg-primary/90 transition-colors">确认审核</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openAddTaskModal() {
+      const modal = document.getElementById('add-task-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      modal.setAttribute('aria-hidden','false');
+      lucide.createIcons();
+    }
+    function closeAddTaskModal() {
+      const modal = document.getElementById('add-task-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      modal.setAttribute('aria-hidden','true');
+      document.getElementById('new-task-form').reset();
+      document.getElementById('create-success').classList.add('hidden');
+    }
+    function handleCreateTask(event) {
+      event.preventDefault();
+      const form = document.getElementById('new-task-form');
+      const formData = new FormData(form);
+      const task = {
+        taskName: formData.get('taskName'),
+        workUnit: formData.get('workUnit'),
+        workTime: formData.get('workTime'),
+        relatedTower: formData.get('relatedTower')
+      };
+      localStorage.setItem('howso_pc_new_task', JSON.stringify(task));
+      const tbody = document.querySelector('table tbody');
+      if (tbody) {
+        const towerMap = {
+          'JL-CC-CY-0231': '长春-朝阳-前进大街基站',
+          'JL-JL-FM-0087': '吉林-丰满-松江路基站',
+          'JL-SP-TX-0156': '四平-铁西-英雄大路基站',
+          'JL-YB-YJ-0422': '延边-延吉-公园路基站',
+          'JL-TH-DC-0319': '通化-东昌-建设大街基站',
+          'JL-BC-TB-0098': '白城-洮北-青年南街基站'
+        };
+        const unitMap = {
+          'unit-1': '长春市通信工程维护有限公司',
+          'unit-2': '吉林市铁塔维护中心',
+          'unit-3': '四平市基站运维队',
+          'unit-4': '延边州移动通信维护部',
+          'unit-5': '通化市铁塔作业班组'
+        };
+        const tr = document.createElement('tr');
+        tr.className = 'table-row transition-colors';
+        tr.innerHTML = `
+          <td class="px-5 py-4 howso-text-sm howso-font-medium text-foreground">${task.taskName}</td>
+          <td class="px-5 py-4 howso-text-sm text-foreground">${towerMap[task.relatedTower] || ''}</td>
+          <td class="px-5 py-4 howso-text-sm text-muted-foreground">${task.relatedTower}</td>
+          <td class="px-5 py-4 howso-text-sm text-foreground">${unitMap[task.workUnit] || task.workUnit}</td>
+          <td class="px-5 py-4 howso-text-sm text-muted-foreground">${task.workTime.replace('T',' ')}</td>
+          <td class="px-5 py-4 howso-text-sm text-muted-foreground">-</td>
+          <td class="px-5 py-4"><span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-info); background-color: rgba(59,130,246,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-info);"></span>未开始</span></td>
+          <td class="px-5 py-4 howso-text-sm text-muted-foreground">-</td>
+          <td class="px-5 py-4">
+            <div class="flex items-center justify-end gap-2">
+              <button type="button" onclick="openTaskDetailModal(this)" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="查看详情"><i data-lucide="eye" class="w-4 h-4"></i></button>
+              <button type="button" onclick="openActionModal(this, '编辑')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="编辑"><i data-lucide="pencil" class="w-4 h-4"></i></button>
+              <button type="button" onclick="openActionModal(this, '删除')" class="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-error hover:bg-error/10 transition-colors" title="删除"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+            </div>
+          </td>
+        `;
+        tbody.insertBefore(tr, tbody.firstChild);
+        lucide.createIcons();
+      }
+      const statPending = document.querySelector('[data-dom-id="stat-pending"] .howso-text-2xl');
+      if (statPending) {
+        statPending.textContent = parseInt(statPending.textContent || '0') + 1;
+      }
+      const success = document.getElementById('create-success');
+      success.classList.remove('hidden');
+      setTimeout(() => {
+        closeAddTaskModal();
+      }, 1200);
+      return false;
+    }
+    document.getElementById('add-task-modal').addEventListener('click', function(e){
+      if (e.target === this) closeAddTaskModal();
+    });
+
+    // PC 端任务详情弹窗（字段参考 APP 侧作业详情）
+    function openTaskDetailModal(btn) {
+      const row = btn.closest('tr');
+      const cells = row ? row.querySelectorAll('td') : [];
+      const taskName = cells[0]?.innerText.trim() || '-';
+      const towerName = cells[1]?.innerText.trim() || '-';
+      const towerCode = cells[2]?.innerText.trim() || '-';
+      const workUnit = cells[3]?.innerText.trim() || '-';
+      const workTime = cells[4]?.innerText.trim() || '-';
+      const duration = cells[5]?.innerText.trim() || '-';
+      const statusHtml = cells[6]?.innerHTML.trim() || '-';
+      const device = cells[7]?.innerText.trim() || '-';
+
+      const html = `
+        <div class="bg-muted/30 border border-border rounded-xl p-4">
+          <div class="flex items-center justify-between mb-3">
+            <span class="howso-text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-md howso-font-medium">RW-${towerCode.replace(/[^A-Za-z0-9]/g,'').slice(-8)}</span>
+            <span>${statusHtml}</span>
+          </div>
+          <h3 class="howso-text-xl howso-font-semibold text-foreground">${towerName}</h3>
+          <p class="howso-text-sm text-muted-foreground mt-1">塔址编号：${towerCode}</p>
+        </div>
+
+        <div class="bg-card border border-border rounded-xl overflow-hidden">
+          <div class="px-4 py-3.5 border-b border-border flex items-center justify-between">
+            <div class="flex items-center gap-3"><i data-lucide="calendar" class="w-5 h-5 text-muted-foreground"></i><span class="howso-text-base text-foreground">作业时间</span></div>
+            <span class="howso-text-sm text-muted-foreground">${workTime}</span>
+          </div>
+          <div class="px-4 py-3.5 border-b border-border flex items-center justify-between">
+            <div class="flex items-center gap-3"><i data-lucide="map-pin" class="w-5 h-5 text-muted-foreground"></i><span class="howso-text-base text-foreground">塔址位置</span></div>
+            <span class="howso-text-sm text-muted-foreground">${towerName.replace(/基站$/, '')}</span>
+          </div>
+          <div class="px-4 py-3.5 border-b border-border flex items-center justify-between">
+            <div class="flex items-center gap-3"><i data-lucide="building-2" class="w-5 h-5 text-muted-foreground"></i><span class="howso-text-base text-foreground">作业单位</span></div>
+            <span class="howso-text-sm text-muted-foreground">${workUnit}</span>
+          </div>
+          <div class="px-4 py-3.5 border-b border-border flex items-center justify-between">
+            <div class="flex items-center gap-3"><i data-lucide="user-check" class="w-5 h-5 text-muted-foreground"></i><span class="howso-text-base text-foreground">作业负责人</span></div>
+            <span class="howso-text-sm text-muted-foreground">李强 · 长春一队</span>
+          </div>
+          <div class="px-4 py-3.5 flex items-center justify-between">
+            <div class="flex items-center gap-3"><i data-lucide="shield-check" class="w-5 h-5 text-muted-foreground"></i><span class="howso-text-base text-foreground">监督员</span></div>
+            <span class="howso-text-sm text-muted-foreground">王建国</span>
+          </div>
+        </div>
+
+        <div class="bg-card border border-border rounded-xl p-4">
+          <h4 class="howso-text-base howso-font-semibold text-foreground mb-3">作业人员</h4>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 p-3 rounded-xl border border-border bg-muted/30">
+              <div class="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center howso-text-sm howso-font-semibold">李</div>
+              <div class="flex-1 min-w-0">
+                <p class="howso-text-base howso-font-medium text-foreground">李强</p>
+                <p class="howso-text-xs text-muted-foreground">登高作业 · 已人脸核验</p>
+              </div>
+              <i data-lucide="check-circle-2" class="w-5 h-5" style="color: var(--howso-state-success);"></i>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl border border-border bg-muted/30">
+              <div class="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center howso-text-sm howso-font-semibold">张</div>
+              <div class="flex-1 min-w-0">
+                <p class="howso-text-base howso-font-medium text-foreground">张伟</p>
+                <p class="howso-text-xs text-muted-foreground">地面配合 · 已人脸核验</p>
+              </div>
+              <i data-lucide="check-circle-2" class="w-5 h-5" style="color: var(--howso-state-success);"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-card border border-border rounded-xl p-4">
+          <h4 class="howso-text-base howso-font-semibold text-foreground mb-3">关联设备</h4>
+          <div class="flex items-center gap-3 p-3 rounded-xl border border-border bg-muted/30">
+            <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0"><i data-lucide="video" class="w-5 h-5"></i></div>
+            <div class="flex-1 min-w-0">
+              <p class="howso-text-base howso-font-medium text-foreground">${device.replace(/在线|离线/, '').trim() || '执法记录仪 #A001'}</p>
+              <p class="howso-text-xs text-muted-foreground">李强佩戴 · ${device.includes('在线') ? '在线' : '离线'}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-card border border-border rounded-xl p-4">
+          <h4 class="howso-text-base howso-font-semibold text-foreground mb-3">流程数据</h4>
+          <div class="space-y-3">
+            <div class="p-3 rounded-xl border border-border bg-muted/30">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2"><div class="w-7 h-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center"><i data-lucide="shield-check" class="w-4 h-4"></i></div><span class="howso-text-sm howso-font-semibold text-foreground">人员验证</span></div>
+                <span class="howso-text-xs px-2 py-0.5 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);">已通过</span>
+              </div>
+              <div class="space-y-1.5 pl-9">
+                <p class="howso-text-xs text-muted-foreground">验证方式：人脸识别 + 证照验证</p>
+                <p class="howso-text-xs text-muted-foreground">验证时间：${workTime.split('~')[0].trim()}</p>
+                <p class="howso-text-xs text-muted-foreground">验证人员：李强、张伟</p>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl border border-border bg-muted/30">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2"><div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background-color: rgba(245,158,11,0.1); color: var(--howso-state-warning);"><i data-lucide="activity" class="w-4 h-4"></i></div><span class="howso-text-sm howso-font-semibold text-foreground">上塔监管</span></div>
+                <span class="howso-text-xs px-2 py-0.5 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);">进行中</span>
+              </div>
+              <div class="space-y-1.5 pl-9">
+                <p class="howso-text-xs text-muted-foreground">AI 识别场景：安全帽佩戴正常 · 安全带已系 · 无违规物品</p>
+                <p class="howso-text-xs text-muted-foreground">验证结果：<span style="color: var(--howso-state-success);">已通过</span></p>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl border border-border bg-muted/30">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2"><div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background-color: rgba(239,68,68,0.1); color: var(--howso-state-error);"><i data-lucide="wrench" class="w-4 h-4"></i></div><span class="howso-text-sm howso-font-semibold text-foreground">维修监管</span></div>
+                <span class="howso-text-xs px-2 py-0.5 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);">已完成</span>
+              </div>
+              <div class="space-y-1.5 pl-9">
+                <p class="howso-text-xs text-muted-foreground">涉及设备：RRU-A1</p>
+                <p class="howso-text-xs text-muted-foreground">预计时长：${duration}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-card border border-border rounded-xl p-4">
+          <h4 class="howso-text-base howso-font-semibold text-foreground mb-3">操作记录</h4>
+          <div class="relative pl-5 space-y-4">
+            <div class="absolute left-[7px] top-2 bottom-2 w-0.5 bg-border"></div>
+            <div class="relative">
+              <div class="absolute -left-[13px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary border-2 border-background"></div>
+              <p class="howso-text-sm text-foreground howso-font-medium">任务创建</p>
+              <p class="howso-text-xs text-muted-foreground">${workTime.split('~')[0].trim()} · 王建国</p>
+            </div>
+            <div class="relative">
+              <div class="absolute -left-[13px] top-1.5 w-2.5 h-2.5 rounded-full bg-muted-foreground border-2 border-background"></div>
+              <p class="howso-text-sm text-foreground howso-font-medium">任务派发</p>
+              <p class="howso-text-xs text-muted-foreground">${workTime.split('~')[0].trim()} · 系统自动</p>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById('task-detail-content').innerHTML = html;
+      const modal = document.getElementById('task-detail-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      modal.setAttribute('aria-hidden','false');
+      lucide.createIcons();
+    }
+    function closeTaskDetailModal() {
+      const modal = document.getElementById('task-detail-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      modal.setAttribute('aria-hidden','true');
+    }
+    document.getElementById('task-detail-modal').addEventListener('click', function(e){
+      if (e.target === this) closeTaskDetailModal();
+    });
+
+    // PC 端操作确认弹窗（派单/编辑/删除）
+    let currentAction = '';
+    let currentActionBtn = null;
+    function openActionModal(btn, action) {
+      currentAction = action;
+      currentActionBtn = btn;
+      const row = btn.closest('tr');
+      const taskName = row ? row.querySelector('td')?.innerText.trim() : '该任务';
+      document.getElementById('action-modal-title').textContent = action + '确认';
+      document.getElementById('action-modal-message').textContent = `确认对「${taskName}」执行${action}操作？`;
+      const modal = document.getElementById('action-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeActionModal() {
+      const modal = document.getElementById('action-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      modal.setAttribute('aria-hidden','true');
+      currentAction = '';
+      currentActionBtn = null;
+    }
+    function confirmAction() {
+      closeActionModal();
+      // 这里可接入真实接口，当前仅展示二次确认
+    }
+    document.getElementById('action-modal').addEventListener('click', function(e){
+      if (e.target === this) closeActionModal();
+    });
+
+    // 任务审核
+    let currentReviewRow = null;
+    function openReviewModal(btn) {
+      currentReviewRow = btn.closest('tr');
+      const cells = currentReviewRow ? currentReviewRow.querySelectorAll('td') : [];
+      document.getElementById('review-task-name').textContent = cells[0]?.innerText.trim() || '-';
+      document.getElementById('review-tower-name').textContent = cells[1]?.innerText.trim() || '-';
+      document.getElementById('review-tower-code').textContent = cells[2]?.innerText.trim() || '-';
+      document.getElementById('review-form').reset();
+      const modal = document.getElementById('review-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      modal.setAttribute('aria-hidden','false');
+      lucide.createIcons();
+    }
+    function closeReviewModal() {
+      const modal = document.getElementById('review-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      modal.setAttribute('aria-hidden','true');
+      currentReviewRow = null;
+    }
+    function handleReviewSubmit(event) {
+      event.preventDefault();
+      if (!currentReviewRow) return false;
+      const form = document.getElementById('review-form');
+      const formData = new FormData(form);
+      const result = formData.get('reviewResult');
+      const comment = (formData.get('reviewComment') || '').trim();
+      if (result === 'rejected' && !comment) {
+        alert('审核不通过时，请填写审核意见。');
+        document.getElementById('review-comment').focus();
+        return false;
+      }
+      const statusCell = currentReviewRow.querySelectorAll('td')[6];
+      const reviewBtn = currentReviewRow.querySelector('[data-dom-id^="btn-review-"]');
+      if (statusCell) {
+        if (result === 'approved') {
+          statusCell.innerHTML = '<span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-success); background-color: rgba(16,185,129,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-success);"></span>已完成</span>';
+          currentReviewRow.setAttribute('data-status', 'completed');
+          const statCompleted = document.querySelector('[data-dom-id="stat-completed"] .howso-text-2xl');
+          const statPending = document.querySelector('[data-dom-id="stat-pending"] .howso-text-2xl');
+          if (statCompleted) statCompleted.textContent = parseInt(statCompleted.textContent || '0') + 1;
+          if (statPending) statPending.textContent = Math.max(0, parseInt(statPending.textContent || '0') - 1);
+        } else {
+          statusCell.innerHTML = '<span class="inline-flex items-center gap-1 howso-text-xs px-2.5 py-1 rounded-md howso-font-medium" style="color: var(--howso-state-error); background-color: rgba(239,68,68,0.1);"><span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--howso-state-error);"></span>审核不通过</span>';
+          currentReviewRow.setAttribute('data-status', 'rejected');
+          const statPending = document.querySelector('[data-dom-id="stat-pending"] .howso-text-2xl');
+          if (statPending) statPending.textContent = Math.max(0, parseInt(statPending.textContent || '0') - 1);
+        }
+      }
+      if (reviewBtn) {
+        reviewBtn.remove();
+      }
+      closeReviewModal();
+      return false;
+    }
+    document.getElementById('review-modal').addEventListener('click', function(e){
+      if (e.target === this) closeReviewModal();
+    });
+  </script>
   <script>lucide.createIcons();</script>
 </body>
 </html>
