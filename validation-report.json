@@ -23,43 +23,115 @@
     "read_status": "ok"
   },
   "operatingMode": "free-explore",
-  "renderBlockingErrorCount": 2,
-  "softWarningCount": 5,
+  "renderBlockingErrorCount": 12,
+  "softWarningCount": 6,
   "renderBlockingErrors": [
-    "[dispatch-changed-files] project.expectedDispatches[] is required when dispatchPreflightManifest[] exists",
-    "[mobile-navigation-consistency] pages/app-home.html: mobile nav cluster is only detectable from data-dom-id/id. Add stable data-nav-key=\"<key>\" to every tab item; data-dom-id is only for click wiring and must not define active-state structure. Repair: rebuild the Page Packet with Mobile Navigation Contract and copy canonicalNavHtml. If this is post-validation repair, run repair-mobile-navigation-flow.mjs once; do not patch individual span/data-dom-id/class fragments."
+    "[design-file] Validation failed for .design file batch: ========================================\n[FAIL] Validation failed\n----------------------------------------\nFound 1 issues:\n\n  1. [root.data] page count mismatch: expected 10 page node(s), got 11. Possible cause: Main Agent .design update missed or removed page nodes. Fix: check HTML files under pages/ and re-append missing page nodes to the data array\n\n========================================\n",
+    "[html-files] pages/new-task-time.html: HTML file not found",
+    "[dispatch-changed-files] pages/maintenance-monitor.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+    "[dispatch-changed-files] pages/maintenance-monitor.html: matching project.expectedDispatches[] completion row is required",
+    "[dispatch-changed-files] pages/task-detail.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+    "[dispatch-changed-files] pages/task-detail.html: matching project.expectedDispatches[] completion row is required",
+    "[dispatch-changed-files] pages/login.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+    "[dispatch-changed-files] pages/login.html: matching project.expectedDispatches[] completion row is required",
+    "[dispatch-changed-files] pages/app-home.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+    "[dispatch-changed-files] pages/app-home.html: matching project.expectedDispatches[] completion row is required",
+    "[mobile-navigation-consistency] pages/app-home.html: mobile nav cluster is only detectable from data-dom-id/id. Add stable data-nav-key=\"<key>\" to every tab item; data-dom-id is only for click wiring and must not define active-state structure. Repair: rebuild the Page Packet with Mobile Navigation Contract and copy canonicalNavHtml. If this is post-validation repair, run repair-mobile-navigation-flow.mjs once; do not patch individual span/data-dom-id/class fragments.",
+    "[assets-coverage] Image file \"assets/image.png\" exists on disk but is not registered as a type:\"image\" node in any .design file. Every image asset must have a corresponding image node so it surfaces on the canvas. Fix: append an image node to .design (see intent-workflows/intent-project-complex-build/01-graphic-asset-preparation.md or intent-workflows/intent-project-mutation/edit-existing-project.md Step 2b')."
   ],
   "errorSignatures": [
     {
+      "errorClass": "artifact-readiness",
+      "normalized": "[design-file] Validation failed for .design file batch: ======================================== [FAIL] Validation failed ---------------------------------------- Found 1 issues: 1. [root.data] page count mismatch: expected 10 page node(s), got 11. Possible cause: Main Agent .design update missed or removed page nodes. Fix: check HTML files under pages/ and re-append missing page nodes to the data array ========================================",
+      "signature": "d98f57d54c5ea750d3e15c27d188725fdb8156d229c9d522054d91eb34efb253"
+    },
+    {
+      "errorClass": "html-files",
+      "normalized": "[html-files] pages/new-task-time.html: HTML file not found",
+      "signature": "bd06035bf1e2e45fa0c0aeb864bdf784b41fcf8bb54c7b82f38e4f2bb462faab"
+    },
+    {
       "errorClass": "dispatch-preflight-or-ownership",
-      "normalized": "[dispatch-changed-files] project.expectedDispatches[] is required when dispatchPreflightManifest[] exists",
-      "signature": "1863095a5236c379a633d22a8424261bfcde770ff9ab246147a2326cba87f6fd"
+      "normalized": "[dispatch-changed-files] pages/maintenance-monitor.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+      "signature": "185bce02e029b46b9d0032284dd2f4535a85a2a1605f70dc9ff2f8a2e1254bf2"
+    },
+    {
+      "errorClass": "dispatch-preflight-or-ownership",
+      "normalized": "[dispatch-changed-files] pages/maintenance-monitor.html: matching project.expectedDispatches[] completion row is required",
+      "signature": "43b77bb9e3bf9793a6857694c73900e6e80e36c9d62a9e192f4541b55c3afb1c"
+    },
+    {
+      "errorClass": "dispatch-preflight-or-ownership",
+      "normalized": "[dispatch-changed-files] pages/task-detail.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+      "signature": "a664f5e42ac815e0a317b5c66d1ca014b344ca5b8bb14f02fda66766e1b4e1b2"
+    },
+    {
+      "errorClass": "dispatch-preflight-or-ownership",
+      "normalized": "[dispatch-changed-files] pages/task-detail.html: matching project.expectedDispatches[] completion row is required",
+      "signature": "8701ad07c91159d4454298fb984a55097763d0648d06d760f0442e8ccfccb6b6"
+    },
+    {
+      "errorClass": "dispatch-preflight-or-ownership",
+      "normalized": "[dispatch-changed-files] pages/login.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+      "signature": "229682f0c2b4dd51fe805e320aa05b2d89640b91bb5a7af099579ff9ff6d275d"
+    },
+    {
+      "errorClass": "dispatch-preflight-or-ownership",
+      "normalized": "[dispatch-changed-files] pages/login.html: matching project.expectedDispatches[] completion row is required",
+      "signature": "f32798c4555b228ffd65a347b9650e1caab3f70ca1601145ab6302584f337c29"
+    },
+    {
+      "errorClass": "dispatch-preflight-or-ownership",
+      "normalized": "[dispatch-changed-files] pages/app-home.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+      "signature": "c53278ac4fb6f6041f285faa1e7f55240a075a78256358c9cc49a36a7f44e29c"
+    },
+    {
+      "errorClass": "dispatch-preflight-or-ownership",
+      "normalized": "[dispatch-changed-files] pages/app-home.html: matching project.expectedDispatches[] completion row is required",
+      "signature": "04f910248135c809b7c94aa52fbc4eb93cca6f669c35cb5b16b440a9a908f44c"
     },
     {
       "errorClass": "mobile-navigation-consistency",
       "normalized": "[mobile-navigation-consistency] pages/app-home.html: mobile nav cluster is only detectable from data-dom-id/id. Add stable data-nav-key=\"<key>\" to every tab item; data-dom-id is only for click wiring and must not define active-state structure. Repair: rebuild the Page Packet with Mobile Navigation Contract and copy canonicalNavHtml. If this is post-validation repair, run repair-mobile-navigation-flow.mjs once; do not patch individual span/data-dom-id/class fragments.",
       "signature": "7c65e75972fb2ed1d9440a149738c24259d1e2c4fcfd961181ef6feea44732a9"
+    },
+    {
+      "errorClass": "artifact-readiness",
+      "normalized": "[assets-coverage] Image file \"assets/image.png\" exists on disk but is not registered as a type:\"image\" node in any .design file. Every image asset must have a corresponding image node so it surfaces on the canvas. Fix: append an image node to .design (see intent-workflows/intent-project-complex-build/01-graphic-asset-preparation.md or intent-workflows/intent-project-mutation/edit-existing-project.md Step 2b').",
+      "signature": "635ed3f8a2581d5e0273966ca187fd88de7fb70d1e4b0abd3f0ddcc94f468701"
     }
   ],
   "softWarnings": [
     "[html-head-style] app-home.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
     "[html-head-style] web-task-management.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
     "[mobile-bottom-overlay] pages/task-detail.html: bottom fixed/absolute CTA or navigation found. Ensure it has safe-area spacing and does not cover content. Evidence: class=\"absolute left-[7px] top-2 bottom-2 w-0.5 bg-border\"",
+    "[mobile-bottom-overlay] pages/web-task-management.html: bottom fixed/absolute CTA or navigation found. Ensure it has safe-area spacing and does not cover content. Evidence: class=\"absolute left-[7px] top-2 bottom-2 w-0.5 bg-border\"",
     "[validation-discipline] validationHistory has 6 full validation run(s), max allowed is 2",
     "[html-quality] web-task-management.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference."
   ],
   "repairPlanHints": [],
   "repairActionTable": [],
-  "errorCount": 2,
-  "warningCount": 5,
+  "errorCount": 12,
+  "warningCount": 6,
   "errors": [
-    "[dispatch-changed-files] project.expectedDispatches[] is required when dispatchPreflightManifest[] exists",
-    "[mobile-navigation-consistency] pages/app-home.html: mobile nav cluster is only detectable from data-dom-id/id. Add stable data-nav-key=\"<key>\" to every tab item; data-dom-id is only for click wiring and must not define active-state structure. Repair: rebuild the Page Packet with Mobile Navigation Contract and copy canonicalNavHtml. If this is post-validation repair, run repair-mobile-navigation-flow.mjs once; do not patch individual span/data-dom-id/class fragments."
+    "[design-file] Validation failed for .design file batch: ========================================\n[FAIL] Validation failed\n----------------------------------------\nFound 1 issues:\n\n  1. [root.data] page count mismatch: expected 10 page node(s), got 11. Possible cause: Main Agent .design update missed or removed page nodes. Fix: check HTML files under pages/ and re-append missing page nodes to the data array\n\n========================================\n",
+    "[html-files] pages/new-task-time.html: HTML file not found",
+    "[dispatch-changed-files] pages/maintenance-monitor.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+    "[dispatch-changed-files] pages/maintenance-monitor.html: matching project.expectedDispatches[] completion row is required",
+    "[dispatch-changed-files] pages/task-detail.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+    "[dispatch-changed-files] pages/task-detail.html: matching project.expectedDispatches[] completion row is required",
+    "[dispatch-changed-files] pages/login.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+    "[dispatch-changed-files] pages/login.html: matching project.expectedDispatches[] completion row is required",
+    "[dispatch-changed-files] pages/app-home.html: dispatchPreflightManifest.allowedWritePaths[] is required",
+    "[dispatch-changed-files] pages/app-home.html: matching project.expectedDispatches[] completion row is required",
+    "[mobile-navigation-consistency] pages/app-home.html: mobile nav cluster is only detectable from data-dom-id/id. Add stable data-nav-key=\"<key>\" to every tab item; data-dom-id is only for click wiring and must not define active-state structure. Repair: rebuild the Page Packet with Mobile Navigation Contract and copy canonicalNavHtml. If this is post-validation repair, run repair-mobile-navigation-flow.mjs once; do not patch individual span/data-dom-id/class fragments.",
+    "[assets-coverage] Image file \"assets/image.png\" exists on disk but is not registered as a type:\"image\" node in any .design file. Every image asset must have a corresponding image node so it surfaces on the canvas. Fix: append an image node to .design (see intent-workflows/intent-project-complex-build/01-graphic-asset-preparation.md or intent-workflows/intent-project-mutation/edit-existing-project.md Step 2b')."
   ],
   "warnings": [
     "[html-head-style] app-home.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
     "[html-head-style] web-task-management.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
     "[mobile-bottom-overlay] pages/task-detail.html: bottom fixed/absolute CTA or navigation found. Ensure it has safe-area spacing and does not cover content. Evidence: class=\"absolute left-[7px] top-2 bottom-2 w-0.5 bg-border\"",
+    "[mobile-bottom-overlay] pages/web-task-management.html: bottom fixed/absolute CTA or navigation found. Ensure it has safe-area spacing and does not cover content. Evidence: class=\"absolute left-[7px] top-2 bottom-2 w-0.5 bg-border\"",
     "[validation-discipline] validationHistory has 6 full validation run(s), max allowed is 2",
     "[html-quality] web-task-management.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference."
   ],
@@ -112,7 +184,7 @@
       "read_status": "ok"
     },
     "renderBlockingErrorCount": 0,
-    "softWarningCount": 5,
+    "softWarningCount": 6,
     "renderBlockingErrors": [],
     "repairActionTable": [],
     "repairPlanHints": [],
@@ -131,23 +203,24 @@
     ]
   },
   "projectFileHashes": {
-    "app-task-management-prototype.design": "e59a31d7b67583cdefe869cb6719519dbc636faa9396f1f0d1ed3c7bbb44440e",
+    "app-task-management-prototype.design": "091adb5458c09c33790b42dae635404538ba14f55f750481f73d6a00c3338b70",
     "colors_and_type.css": "81d835c6e5bab1baab25f68f1fde2994c4cd321e08ceb8ff8bf24fe05d51ee2a",
-    "runtime-orchestration-summary.json": "4e35cccc98321bb4e7d3d0efafc841f04642f257c4f5b3a89defdda7ffc85022",
-    "pages/app-home.html": "5bbc0be879e97c38f85d9e565ccfa851ad7e0b5f9ce5b80c1bfe4e9248bc2e4e",
-    "pages/climb-safety.html": "92d6238a17c3d7384f94b2a570fbf3fbf863915fbe63200395792b8d9164277f",
-    "pages/login.html": "7d154c21bf9d2631874849ca10d70983c2bcb616dbe71e7bb8efe7b073bd63dd",
-    "pages/maintenance-monitor.html": "8f67d805a7c46214c5ed3323d88dc902917c21ddfe41d3b84a066a5c3865c7a2",
-    "pages/my-profile.html": "9775456dea66813e8d9ade76ad3fdaab3e5841367c96d33eb8f625ef383ca796",
-    "pages/new-task-time.html": "f3e3fb9cb9d587071dd90b6cb0fb1a6c13c1916acefa954036a4111299e9e6b8",
-    "pages/new-task-tower.html": "3e0769eeeb8fe1b92f33ed2614b6dd33df147a10713c620a0457a2e582cf52c5",
-    "pages/task-detail.html": "e777af4f71616b662bb38a9d4874ef63759b78a2a87034c11c98468ed67f0438",
-    "pages/task-home.html": "7414a430e9d492d69e1e2cd8a9c334ae1bcfc1cb6556cc86831ac7a3fa639d8a",
-    "pages/verify-personnel.html": "85aba8f414ea15ee46a1cfc699eecb82aeafb5c451f3a943fa55e60c05f86335",
-    "pages/web-task-management.html": "a71676b834cc41ee31c1c33beb92f838b36d13619ac49451be25832793b9c07f"
+    "runtime-orchestration-summary.json": "91bd4fcbad10cfa55f7eefe026e9c7d6244bcd885f758e016cd7afdb907db5e8",
+    "pages/app-home.html": "5e580ca4bc035f7b3b4e0290aff12c85c1539d3d9618d711a12461cbe938bd54",
+    "pages/climb-safety.html": "327e7805d6885649ffa282c7bf1b19dbb84215bd39dda4662c17151734ccbf59",
+    "pages/login.html": "6728e013b801ac4be3387c69316ccab910595d02b90f2d9eef1c806dfe645409",
+    "pages/maintenance-monitor.html": "9fdc6f9108ee059bcfd965c3b15a7adc4cb161f28a931b7355731ca67b05ad54",
+    "pages/my-profile.html": "d04c449e2ff51616f36d8751421e19df378919dd287318f046eb72877e415324",
+    "pages/new-task-tower.html": "8e3ab1318ceff1713625629b1bba600e1d300eaa517ec6d9f90c228f552949db",
+    "pages/task-detail.html": "f74397ff365ce5102bf7d115befc04b702564617bd774b4ff1dc4602b60ef4c4",
+    "pages/task-home.html": "e72f66e501b26ff85f2787a42d87964b38f44e3fb551d8c8dc18a8d6cd6ea397",
+    "pages/task-location-check.html": "1f12386d49b33dcaee6666702634451d5f25eb60a5b0f7baf1d75ca5b289646f",
+    "pages/verify-personnel.html": "2ef53ebc082dc90d1998ec342a3fd37e131afeb3ae116fae7bdcb70ded57e49d",
+    "pages/web-task-management.html": "d6bc0cf96ca093d58838579f261f724e15274716481bb30505569889425a0ecc",
+    "assets/image.png": "d05a3eef331bdffcfa87e5d346339c91530b6a16e1252ca144cb117b110c3f87"
   },
   "designDir": "e:\\铁塔分省\\吉林铁塔\\app-task-management-prototype",
-  "expectedPages": null,
-  "requireInteractions": null,
-  "checkedAt": "2026-09-08T15:34:00.993Z"
+  "expectedPages": 10,
+  "requireInteractions": "btn-back-home:new-task-tower.html,btn-next-time:new-task-tower.html,btn-back-tower:verify-personnel.html,btn-next-climb:verify-personnel.html",
+  "checkedAt": "2026-09-10T01:46:58.485Z"
 }
