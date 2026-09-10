@@ -450,7 +450,20 @@
         ]
       }
     ],
-    "validationRepairLedger": []
+    "validationRepairLedger": [],
+    "validationRunDiscipline": {
+      "maxFullValidationRuns": 2,
+      "softWarningsTriggerRepair": false,
+      "blockingRepairMode": "targeted-once",
+      "forbiddenRepairTriggers": ["soft-warning-only", "provenance-warning-only", "style-warning-only"]
+    },
+    "currentMutation": {
+      "mode": "existing_edit_in_place",
+      "description": "PC 任务管理列表为待审核任务增加审核功能：点击审核按钮弹出审核弹窗，支持通过/不通过选择、审核意见填写，提交后更新任务状态并联动统计卡片",
+      "affectedPages": ["page-web-task-management"],
+      "deletedPages": [],
+      "sourceProjectLaneHeritage": "existing_edit_add_comparison"
+    }
   },
   "pages": [
     {
@@ -486,14 +499,6 @@
       "businessScenario": "task-creation-step-1"
     },
     {
-      "nodeId": "page-new-task-time",
-      "slug": "new-task-time",
-      "title": "新增任务-作业时间",
-      "htmlSrc": "pages/new-task-time.html",
-      "pageType": "task-driven",
-      "businessScenario": "task-creation-step-2"
-    },
-    {
       "nodeId": "page-verify-personnel",
       "slug": "verify-personnel",
       "title": "上塔前人员验证",
@@ -516,6 +521,14 @@
       "htmlSrc": "pages/maintenance-monitor.html",
       "pageType": "task-driven",
       "businessScenario": "task-supervision-step-3"
+    },
+    {
+      "nodeId": "page-task-location-check",
+      "slug": "task-location-check",
+      "title": "位置确认",
+      "htmlSrc": "pages/task-location-check.html",
+      "pageType": "task-driven",
+      "businessScenario": "task-location-confirmation"
     },
     {
       "nodeId": "page-task-detail",
