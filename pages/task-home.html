@@ -224,8 +224,8 @@ body {
             <i data-lucide="clock" class="w-5 h-5"></i>
           </div>
           <div>
-            <p class="howso-text-xs howso-text-muted">待完成</p>
-            <p class="howso-text-2xl howso-font-bold text-foreground mt-0.5">1</p>
+            <p class="howso-text-xs howso-text-muted">待审核</p>
+            <p class="howso-text-2xl howso-font-bold text-foreground mt-0.5">2</p>
           </div>
         </div>
         <div class="bg-card border border-border rounded-xl p-4 shadow-sm flex flex-col justify-between gap-2" data-dom-id="stat-completed">
@@ -276,10 +276,11 @@ body {
               <div class="relative">
                 <select id="filter-task-status" data-dom-id="filter-task-status" class="w-full appearance-none rounded-xl border border-input bg-background px-3 py-3 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
                   <option value="">全部状态</option>
-                  <option value="pending">待开始</option>
+                  <option value="pending">未开始</option>
                   <option value="progress">进行中</option>
+                  <option value="review">待审核</option>
+                  <option value="rejected">审核不通过</option>
                   <option value="completed">已完成</option>
-                  <option value="overdue">已逾期</option>
                 </select>
                 <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
               </div>
@@ -288,6 +289,20 @@ body {
         </div>
 
         <div class="space-y-3">
+          <a href="new-task-tower.html" data-dom-id="task-card-new" class="block bg-card border border-border rounded-xl p-4 shadow-sm active:bg-muted/50 transition-colors cursor-pointer">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span id="new-task-name" class="howso-text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-md howso-font-medium truncate max-w-[160px]">PC端新建任务</span>
+                  <span class="howso-text-xs px-2 py-0.5 rounded-md howso-font-medium" style="color: var(--howso-state-info); background-color: rgba(59,130,246,0.1);">未开始</span>
+                </div>
+                <h3 id="new-task-tower" class="howso-text-base howso-font-semibold text-foreground truncate">待选择关联塔</h3>
+                <p id="new-task-time" class="howso-text-sm howso-text-muted mt-1">请在 PC 端创建任务后自动同步</p>
+              </div>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-muted-foreground shrink-0 mt-1"></i>
+            </div>
+          </a>
+
           <a href="task-location-check.html" data-dom-id="task-card-1" class="block bg-card border border-border rounded-xl p-4 shadow-sm active:bg-muted/50 transition-colors cursor-pointer">
             <div class="flex items-start justify-between gap-2">
               <div class="flex-1 min-w-0">
@@ -332,6 +347,30 @@ body {
       </div>
     </nav>
   </div>
-  <script>lucide.createIcons();</script>
+  <script>
+    (function(){
+      const saved = localStorage.getItem('howso_pc_new_task');
+      if (saved) {
+        try {
+          const task = JSON.parse(saved);
+          const towerMap = {
+            'JL-CC-CY-0231': '长春-朝阳-前进大街基站',
+            'JL-JL-FM-0087': '吉林-丰满-松江路基站',
+            'JL-SP-TX-0156': '四平-铁西-英雄大路基站',
+            'JL-YB-YJ-0422': '延边-延吉-公园路基站',
+            'JL-TH-DC-0319': '通化-东昌-建设大街基站',
+            'JL-BC-TB-0098': '白城-洮北-青年南街基站'
+          };
+          const nameEl = document.getElementById('new-task-name');
+          const towerEl = document.getElementById('new-task-tower');
+          const timeEl = document.getElementById('new-task-time');
+          if (nameEl && task.taskName) nameEl.textContent = task.taskName;
+          if (towerEl && task.relatedTower) towerEl.textContent = towerMap[task.relatedTower] || task.relatedTower;
+          if (timeEl && task.workTime) timeEl.textContent = task.workTime.replace('T',' ');
+        } catch (e) {}
+      }
+    })();
+    lucide.createIcons();
+  </script>
 </body>
 </html>
