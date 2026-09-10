@@ -7,15 +7,15 @@
       "version": 1,
       "createdAt": 1788854719000,
       "canvasData": {
-        "x": 0,
+        "x": 169,
         "y": 0,
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
           "contentHeight": 900,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-f45701bd",
-          "measuredAt": 1788961026640
+          "sourceHash": "fnv1a-3ab923da",
+          "measuredAt": 1788966840164
         }
       },
       "devMetadata": {
@@ -36,15 +36,15 @@
       "version": 1,
       "createdAt": 1788854719000,
       "canvasData": {
-        "x": 169,
+        "x": 338,
         "y": 0,
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
           "contentHeight": 900,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-d2202cba",
-          "measuredAt": 1788876214541
+          "sourceHash": "fnv1a-0c276cf0",
+          "measuredAt": 1789004049150
         }
       },
       "devMetadata": {
@@ -71,6 +71,12 @@
             "transitionLabel": "查看待处理任务"
           },
           {
+            "domId": "nav-app-home",
+            "targetPageId": "page-app-home",
+            "hideEdge": true,
+            "transitionLabel": "切换到首页"
+          },
+          {
             "domId": "nav-task-home",
             "targetPageId": "page-task-home",
             "hideEdge": true,
@@ -92,34 +98,40 @@
       "version": 1,
       "createdAt": 1788854719000,
       "canvasData": {
-        "x": 338,
+        "x": 507,
         "y": 0,
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
-          "contentHeight": 904,
+          "contentHeight": 1006,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-e9eedf09",
-          "measuredAt": 1788922966857
+          "sourceHash": "fnv1a-54acfbc4",
+          "measuredAt": 1789004049150
         }
       },
       "devMetadata": {
         "htmlSrc": "pages/task-home.html",
         "interactions": [
           {
-            "domId": "btn-add-task",
+            "domId": "task-card-new",
             "targetPageId": "page-new-task-tower",
-            "transitionLabel": "新增任务"
+            "transitionLabel": "未开始任务-关联塔"
           },
           {
             "domId": "task-card-1",
-            "targetPageId": "page-task-detail",
+            "targetPageId": "page-task-location-check",
             "transitionLabel": "查看任务详情"
           },
           {
             "domId": "task-card-2",
-            "targetPageId": "page-task-detail",
+            "targetPageId": "page-task-location-check",
             "transitionLabel": "查看任务详情"
+          },
+          {
+            "domId": "nav-task-home",
+            "targetPageId": "page-task-home",
+            "hideEdge": true,
+            "transitionLabel": "切换到任务管理"
           },
           {
             "domId": "nav-my-profile",
@@ -137,15 +149,15 @@
       "version": 1,
       "createdAt": 1788854719000,
       "canvasData": {
-        "x": 169,
-        "y": 1874,
+        "x": 0,
+        "y": 372,
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
           "contentHeight": 900,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-d933101a",
-          "measuredAt": 1788916896679
+          "sourceHash": "fnv1a-e7f6f604",
+          "measuredAt": 1789005176746
         }
       },
       "devMetadata": {
@@ -159,72 +171,8 @@
           },
           {
             "domId": "btn-next-time",
-            "targetPageId": "page-new-task-time",
-            "transitionLabel": "下一步-作业时间"
-          },
-          {
-            "domId": "btn-save-tower-change",
-            "targetPageId": "page-new-task-time",
-            "transitionLabel": "保存变更后下一步"
-          },
-          {
-            "domId": "nav-task-home",
-            "targetPageId": "page-task-home",
-            "hideEdge": true,
-            "transitionLabel": "切换到任务管理"
-          },
-          {
-            "domId": "nav-my-profile",
-            "targetPageId": "page-my-profile",
-            "hideEdge": true,
-            "transitionLabel": "切换到我的"
-          }
-        ]
-      }
-    },
-    {
-      "id": "page-new-task-time",
-      "title": "新增任务-作业时间",
-      "type": "page",
-      "version": 1,
-      "createdAt": 1788854719000,
-      "canvasData": {
-        "x": 0,
-        "y": 372,
-        "group": 0,
-        "layoutSnapshot": {
-          "version": 1,
-          "contentHeight": 900,
-          "viewportWidth": 375,
-          "sourceHash": "fnv1a-4b086d41",
-          "measuredAt": 1788878492843
-        }
-      },
-      "devMetadata": {
-        "htmlSrc": "pages/new-task-time.html",
-        "interactions": [
-          {
-            "domId": "btn-back-tower",
-            "targetPageId": "page-new-task-tower",
-            "hideEdge": true,
-            "transitionLabel": "返回关联塔"
-          },
-          {
-            "domId": "btn-next-verify",
             "targetPageId": "page-verify-personnel",
             "transitionLabel": "下一步-人员验证"
-          },
-          {
-            "domId": "nav-task-home",
-            "targetPageId": "page-task-home",
-            "hideEdge": true,
-            "transitionLabel": "切换到任务管理"
-          },
-          {
-            "domId": "nav-my-profile",
-            "targetPageId": "page-my-profile",
-            "hideEdge": true,
-            "transitionLabel": "切换到我的"
           }
         ]
       }
@@ -241,37 +189,25 @@
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
-          "contentHeight": 950,
+          "contentHeight": 900,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-67aaee82",
-          "measuredAt": 1788878492843
+          "sourceHash": "fnv1a-237f6bab",
+          "measuredAt": 1789005176746
         }
       },
       "devMetadata": {
         "htmlSrc": "pages/verify-personnel.html",
         "interactions": [
           {
-            "domId": "btn-back-time",
-            "targetPageId": "page-new-task-time",
+            "domId": "btn-back-tower",
+            "targetPageId": "page-new-task-tower",
             "hideEdge": true,
-            "transitionLabel": "返回作业时间"
+            "transitionLabel": "返回关联塔"
           },
           {
             "domId": "btn-next-climb",
             "targetPageId": "page-climb-safety",
             "transitionLabel": "下一步-上塔监管"
-          },
-          {
-            "domId": "nav-task-home",
-            "targetPageId": "page-task-home",
-            "hideEdge": true,
-            "transitionLabel": "切换到任务管理"
-          },
-          {
-            "domId": "nav-my-profile",
-            "targetPageId": "page-my-profile",
-            "hideEdge": true,
-            "transitionLabel": "切换到我的"
           }
         ]
       }
@@ -284,14 +220,14 @@
       "createdAt": 1788854719000,
       "canvasData": {
         "x": 0,
-        "y": 1130,
+        "y": 1116,
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
           "contentHeight": 900,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-daad6ece",
-          "measuredAt": 1788878492843
+          "sourceHash": "fnv1a-1396ea9f",
+          "measuredAt": 1788968171128
         }
       },
       "devMetadata": {
@@ -307,18 +243,6 @@
             "domId": "btn-next-maintenance",
             "targetPageId": "page-maintenance-monitor",
             "transitionLabel": "下一步-维修监管"
-          },
-          {
-            "domId": "nav-task-home",
-            "targetPageId": "page-task-home",
-            "hideEdge": true,
-            "transitionLabel": "切换到任务管理"
-          },
-          {
-            "domId": "nav-my-profile",
-            "targetPageId": "page-my-profile",
-            "hideEdge": true,
-            "transitionLabel": "切换到我的"
           }
         ]
       }
@@ -331,14 +255,14 @@
       "createdAt": 1788854719000,
       "canvasData": {
         "x": 0,
-        "y": 1502,
+        "y": 1488,
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
           "contentHeight": 900,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-c8e1076e",
-          "measuredAt": 1788878492843
+          "sourceHash": "fnv1a-ed81ce9d",
+          "measuredAt": 1788968171128
         }
       },
       "devMetadata": {
@@ -354,18 +278,41 @@
             "domId": "btn-finish-task",
             "targetPageId": "page-task-home",
             "transitionLabel": "完成任务"
-          },
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-task-location-check",
+      "title": "位置确认",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1788854719000,
+      "canvasData": {
+        "x": 0,
+        "y": 1860,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 942,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-c694c792",
+          "measuredAt": 1789005176746
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/task-location-check.html",
+        "interactions": [
           {
-            "domId": "nav-task-home",
+            "domId": "btn-back-home",
             "targetPageId": "page-task-home",
             "hideEdge": true,
-            "transitionLabel": "切换到任务管理"
+            "transitionLabel": "返回任务列表"
           },
           {
-            "domId": "nav-my-profile",
-            "targetPageId": "page-my-profile",
-            "hideEdge": true,
-            "transitionLabel": "切换到我的"
+            "domId": "btn-start-execute",
+            "targetPageId": "page-task-detail",
+            "transitionLabel": "开始执行任务"
           }
         ]
       }
@@ -377,15 +324,15 @@
       "version": 1,
       "createdAt": 1788854719000,
       "canvasData": {
-        "x": 338,
-        "y": 373,
+        "x": 507,
+        "y": 402,
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
-          "contentHeight": 1624,
+          "contentHeight": 1551,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-fab0202b",
-          "measuredAt": 1788958890479
+          "sourceHash": "fnv1a-ccbfa3a1",
+          "measuredAt": 1789004049150
         }
       },
       "devMetadata": {
@@ -408,14 +355,14 @@
       "createdAt": 1788854719000,
       "canvasData": {
         "x": 0,
-        "y": 2335,
+        "y": 0,
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
           "contentHeight": 900,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-23a97e77",
-          "measuredAt": 1788857023806
+          "sourceHash": "fnv1a-7f5c582f",
+          "measuredAt": 1788966840164
         }
       },
       "devMetadata": {
@@ -426,6 +373,17 @@
             "targetPageId": "page-task-home",
             "hideEdge": true,
             "transitionLabel": "切换到任务管理"
+          },
+          {
+            "domId": "nav-my-profile",
+            "targetPageId": "page-my-profile",
+            "hideEdge": true,
+            "transitionLabel": "切换到我的"
+          },
+          {
+            "domId": "btn-logout",
+            "targetPageId": "page-login",
+            "transitionLabel": "退出登录"
           }
         ]
       }
@@ -438,54 +396,19 @@
       "createdAt": 1788881280000,
       "canvasData": {
         "x": 0,
-        "y": 1874,
+        "y": 2232,
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
           "contentHeight": 1208,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-9b4c8bbc",
-          "measuredAt": 1788916896679
+          "sourceHash": "fnv1a-a20efa66",
+          "measuredAt": 1788966840164
         }
       },
       "devMetadata": {
         "htmlSrc": "pages/web-task-management.html",
         "interactions": [
-          {
-            "domId": "btn-add-task",
-            "targetPageId": "page-new-task-tower",
-            "transitionLabel": "新增任务"
-          },
-          {
-            "domId": "btn-view-detail-1",
-            "targetPageId": "page-task-detail",
-            "transitionLabel": "查看任务详情"
-          },
-          {
-            "domId": "btn-view-detail-2",
-            "targetPageId": "page-task-detail",
-            "transitionLabel": "查看任务详情"
-          },
-          {
-            "domId": "btn-view-detail-3",
-            "targetPageId": "page-task-detail",
-            "transitionLabel": "查看任务详情"
-          },
-          {
-            "domId": "btn-view-detail-4",
-            "targetPageId": "page-task-detail",
-            "transitionLabel": "查看任务详情"
-          },
-          {
-            "domId": "btn-view-detail-5",
-            "targetPageId": "page-task-detail",
-            "transitionLabel": "查看任务详情"
-          },
-          {
-            "domId": "btn-view-detail-6",
-            "targetPageId": "page-task-detail",
-            "transitionLabel": "查看任务详情"
-          },
           {
             "domId": "nav-task-management",
             "targetPageId": "page-web-task-management",
