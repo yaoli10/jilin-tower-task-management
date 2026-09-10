@@ -187,7 +187,7 @@ body {
 <body class="min-h-screen font-sans antialiased">
   <div class="max-w-[430px] mx-auto min-h-screen flex flex-col bg-background">
     <header class="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border px-4 py-3 flex items-center gap-3">
-      <button type="button" data-dom-id="btn-back-time" class="w-9 h-9 rounded-lg flex items-center justify-center text-foreground hover:bg-muted active:bg-muted/80 transition-colors" aria-label="返回">
+      <button type="button" data-dom-id="btn-back-tower" onclick="location.href='new-task-tower.html'" class="w-9 h-9 rounded-lg flex items-center justify-center text-foreground hover:bg-muted active:bg-muted/80 transition-colors" aria-label="返回">
         <i data-lucide="arrow-left" class="w-5 h-5"></i>
       </button>
       <h1 class="howso-text-lg howso-font-semibold text-foreground flex-1 text-center pr-12">上塔前人员验证</h1>
@@ -297,18 +297,6 @@ body {
       </a>
     </main>
 
-    <nav class="shrink-0 bg-card border-t border-border px-6 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
-      <div class="flex justify-around items-center">
-        <a href="task-home.html" data-dom-id="nav-task-home" class="flex flex-col items-center gap-1 py-2 px-4 text-primary">
-          <i data-lucide="home" class="w-5 h-5"></i>
-          <span class="howso-text-xs howso-font-medium">任务管理</span>
-        </a>
-        <a href="my-profile.html" data-dom-id="nav-my-profile" class="flex flex-col items-center gap-1 py-2 px-4 text-muted-foreground">
-          <i data-lucide="user" class="w-5 h-5"></i>
-          <span class="howso-text-xs howso-font-medium">我的</span>
-        </a>
-      </div>
-    </nav>
   </div>
   <script>
     lucide.createIcons();
