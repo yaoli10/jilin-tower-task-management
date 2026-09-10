@@ -459,8 +459,8 @@
     },
     "currentMutation": {
       "mode": "existing_edit_in_place",
-      "description": "PC 任务管理列表为待审核任务增加审核功能：点击审核按钮弹出审核弹窗，支持通过/不通过选择、审核意见填写，提交后更新任务状态并联动统计卡片",
-      "affectedPages": ["page-web-task-management"],
+      "description": "APP 端入口从登录页开始：将 index.html 中 APP 端入口链接由 task-home.html 改为 login.html，并同步更新 GitHub Pages",
+      "affectedPages": ["page-login"],
       "deletedPages": [],
       "sourceProjectLaneHeritage": "existing_edit_add_comparison"
     }
