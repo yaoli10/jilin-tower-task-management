@@ -187,7 +187,7 @@ body {
 <body class="min-h-screen font-sans antialiased">
   <div class="max-w-[430px] mx-auto min-h-screen flex flex-col bg-background">
     <header class="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border px-4 py-3 flex items-center gap-3">
-      <button type="button" data-dom-id="btn-back-task-home" class="w-9 h-9 rounded-lg flex items-center justify-center text-foreground hover:bg-muted active:bg-muted/80 transition-colors" aria-label="返回">
+      <button type="button" data-dom-id="btn-back-task-home" onclick="location.href='task-home.html'" class="w-9 h-9 rounded-lg flex items-center justify-center text-foreground hover:bg-muted active:bg-muted/80 transition-colors" aria-label="返回">
         <i data-lucide="arrow-left" class="w-5 h-5"></i>
       </button>
       <h1 class="howso-text-lg howso-font-semibold text-foreground flex-1 text-center pr-12">作业详情</h1>
@@ -197,7 +197,7 @@ body {
       <section class="bg-card border border-border rounded-xl p-4 shadow-sm" data-dom-id="detail-status-card">
         <div class="flex items-center justify-between mb-3">
           <span class="howso-text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-md howso-font-medium">RW-20250908-001</span>
-          <span class="howso-text-xs px-2 py-0.5 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);">进行中</span>
+          <span class="howso-text-xs px-2 py-0.5 rounded-md howso-font-medium" style="color: var(--howso-state-warning); background-color: rgba(245,158,11,0.1);">待审核</span>
         </div>
         <h2 class="howso-text-xl howso-font-semibold text-foreground">长春-朝阳-前进大街基站</h2>
         <p class="howso-text-sm howso-text-muted mt-1">塔址编号：JL-CC-CQ-001237</p>
@@ -350,18 +350,6 @@ body {
       </section>
     </main>
 
-    <nav class="shrink-0 bg-card border-t border-border px-6 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
-      <div class="flex justify-around items-center">
-        <a href="task-home.html" data-dom-id="nav-task-home" class="flex flex-col items-center gap-1 py-2 px-4 text-primary">
-          <i data-lucide="home" class="w-5 h-5"></i>
-          <span class="howso-text-xs howso-font-medium">任务管理</span>
-        </a>
-        <a href="my-profile.html" data-dom-id="nav-my-profile" class="flex flex-col items-center gap-1 py-2 px-4 text-muted-foreground">
-          <i data-lucide="user" class="w-5 h-5"></i>
-          <span class="howso-text-xs howso-font-medium">我的</span>
-        </a>
-      </div>
-    </nav>
   </div>
   <script>lucide.createIcons();</script>
 </body>
