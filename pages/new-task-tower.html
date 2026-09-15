@@ -259,7 +259,7 @@ body {
   <div id="tower-change-modal" class="hidden fixed inset-0 z-50 items-end sm:items-center justify-center bg-black/50 p-4" aria-hidden="true">
     <div class="w-full max-w-[430px] bg-card rounded-t-2xl sm:rounded-2xl p-5 shadow-xl space-y-4 max-h-[85vh] overflow-y-auto">
       <div class="flex items-center justify-between">
-        <h3 class="howso-text-lg howso-font-semibold text-foreground">塔址变更申请</h3>
+        <h3 class="howso-text-lg howso-font-semibold text-foreground">定位变更申请</h3>
         <button type="button" data-dom-id="btn-close-tower-modal" class="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:bg-muted">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
@@ -274,20 +274,15 @@ body {
       </div>
 
       <div class="space-y-2">
-        <label class="howso-text-sm howso-font-medium text-foreground">重新选择塔址</label>
-        <div class="relative">
-          <select data-dom-id="select-tower-search" class="w-full appearance-none rounded-xl border border-input bg-background px-4 py-3 howso-text-base text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
-            <option>长春-朝阳-前进大街基站</option>
-            <option>长春-朝阳-卫星路基站</option>
-            <option>长春-朝阳-人民大街基站</option>
-          </select>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+        <label class="howso-text-sm howso-font-medium text-foreground">当前关联塔</label>
+        <div id="current-linked-tower-display" class="w-full rounded-xl border border-border bg-muted/40 px-4 py-3 howso-text-base text-foreground">
+          <span class="howso-text-sm text-muted-foreground">加载中…</span>
         </div>
       </div>
 
       <div class="space-y-2">
-        <label class="howso-text-sm howso-font-medium text-foreground">偏差原因</label>
-        <textarea data-dom-id="textarea-deviation-reason" rows="4" placeholder="请说明塔址与实际位置存在偏差的原因…" class="w-full rounded-xl border border-input bg-background px-4 py-3 howso-text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"></textarea>
+        <label class="howso-text-sm howso-font-medium text-foreground">请说明当前位置与塔址存在偏差的原因</label>
+        <textarea data-dom-id="textarea-deviation-reason" rows="4" placeholder="请说明当前位置与塔址存在偏差的原因…" class="w-full rounded-xl border border-input bg-background px-4 py-3 howso-text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"></textarea>
       </div>
 
       <button type="button" data-dom-id="btn-save-tower-change" class="w-full py-3.5 rounded-xl bg-primary text-primary-foreground howso-text-base howso-font-semibold shadow-md active:scale-[0.98] transition-transform">
@@ -303,6 +298,19 @@ body {
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       modal.setAttribute('aria-hidden','false');
+      const card = document.querySelector('[data-dom-id="linked-tower-card"]');
+      const display = document.getElementById('current-linked-tower-display');
+      if (card && display) {
+        const nameEl = card.querySelector('p.howso-text-base.howso-font-medium');
+        const codeEl = card.querySelector('p.howso-text-sm.howso-text-muted');
+        const name = nameEl ? nameEl.textContent.trim() : '';
+        const code = codeEl ? codeEl.textContent.trim() : '';
+        if (name || code) {
+          display.innerHTML = '<div class="howso-text-base howso-font-medium text-foreground">' + (name || '') + '</div><div class="howso-text-sm text-muted-foreground mt-0.5">' + (code || '') + '</div>';
+        } else {
+          display.innerHTML = '<span class="howso-text-sm text-muted-foreground">未获取到关联塔信息</span>';
+        }
+      }
     }
     (function(){
       const saved = localStorage.getItem('howso_pc_new_task');
