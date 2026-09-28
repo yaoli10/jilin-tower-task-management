@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据统计中心</title>
+    <style id="theme-vars">
+:root {
+  --brand-prefix: howso;
+  --howso-primary-50: #eff6ff;
+  --howso-primary-100: #dbeafe;
+  --howso-primary-200: #bfdbfe;
+  --howso-primary-300: #93c5fd;
+  --howso-primary-400: #60a5fa;
+  --howso-primary-500: #3b82f6;
+  --howso-primary-600: #2563eb;
+  --howso-primary-700: #1d4ed8;
+  --howso-primary-800: #1e40af;
+  --howso-primary-900: #1e3a8a;
+  --howso-gray-50: #f8fafc;
+  --howso-gray-100: #f1f5f9;
+  --howso-gray-200: #e2e8f0;
+  --howso-gray-300: #cbd5e1;
+  --howso-gray-400: #94a3b8;
+  --howso-gray-500: #64748b;
+  --howso-gray-600: #475569;
+  --howso-gray-700: #334155;
+  --howso-gray-800: #1e293b;
+  --howso-gray-900: #0f172a;
+  --howso-state-success: #10b981;
+  --howso-state-warning: #f59e0b;
+  --howso-state-error: #ef4444;
+  --howso-state-info: #3b82f6;
+  --howso-background: #ffffff;
+  --howso-foreground: #0f172a;
+  --howso-card: #ffffff;
+  --howso-card-foreground: #0f172a;
+  --howso-popover: #ffffff;
+  --howso-popover-foreground: #0f172a;
+  --howso-primary: #2563eb;
+  --howso-primary-foreground: #ffffff;
+  --howso-muted: #f1f5f9;
+  --howso-muted-foreground: #64748b;
+  --howso-border: #e2e8f0;
+  --howso-input: #e2e8f0;
+  --howso-ring: #3b82f6;
+  --howso-radius-small: 4px;
+  --howso-radius-medium: 8px;
+  --howso-radius-large: 12px;
+}
+.dark {
+  --howso-background: #0f172a;
+  --howso-foreground: #f8fafc;
+  --howso-card: #1e293b;
+  --howso-card-foreground: #f8fafc;
+  --howso-popover: #1e293b;
+  --howso-popover-foreground: #f8fafc;
+  --howso-primary: #3b82f6;
+  --howso-primary-foreground: #ffffff;
+  --howso-muted: #334155;
+  --howso-muted-foreground: #94a3b8;
+  --howso-border: #334155;
+  --howso-input: #334155;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f1f5f9;
+  color: var(--howso-foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+.howso-text-xs { font-size: 12px; line-height: 16px; }
+.howso-text-sm { font-size: 13px; line-height: 18px; }
+.howso-text-base { font-size: 14px; line-height: 20px; }
+.howso-text-lg { font-size: 16px; line-height: 24px; }
+.howso-text-xl { font-size: 18px; line-height: 28px; }
+.howso-text-2xl { font-size: 20px; line-height: 30px; }
+.howso-text-3xl { font-size: 24px; line-height: 32px; }
+.howso-font-medium { font-weight: 500; }
+.howso-font-semibold { font-weight: 600; }
+.howso-font-bold { font-weight: 700; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--howso-background);
+    --color-foreground: var(--howso-foreground);
+    --color-card: var(--howso-card);
+    --color-card-foreground: var(--howso-card-foreground);
+    --color-popover: var(--howso-popover);
+    --color-popover-foreground: var(--howso-popover-foreground);
+    --color-primary: var(--howso-primary);
+    --color-primary-foreground: var(--howso-primary-foreground);
+    --color-muted: var(--howso-muted);
+    --color-muted-foreground: var(--howso-muted-foreground);
+    --color-border: var(--howso-border);
+    --color-input: var(--howso-input);
+    --color-ring: var(--howso-ring);
+    --radius-sm: var(--howso-radius-small);
+    --radius-md: var(--howso-radius-medium);
+    --radius-lg: var(--howso-radius-large);
+  }
+  @layer base {
+    body { background: #f1f5f9; color: var(--howso-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--howso-background); }
+      .text-background { color: var(--howso-background); }
+      .border-background { border-color: var(--howso-background); }
+      .ring-background { --tw-ring-color: var(--howso-background); }
+      .bg-foreground { background-color: var(--howso-foreground); }
+      .text-foreground { color: var(--howso-foreground); }
+      .border-foreground { border-color: var(--howso-foreground); }
+      .ring-foreground { --tw-ring-color: var(--howso-foreground); }
+      .bg-card { background-color: var(--howso-card); }
+      .text-card { color: var(--howso-card); }
+      .border-card { border-color: var(--howso-card); }
+      .ring-card { --tw-ring-color: var(--howso-card); }
+      .bg-card-foreground { background-color: var(--howso-card-foreground); }
+      .text-card-foreground { color: var(--howso-card-foreground); }
+      .border-card-foreground { border-color: var(--howso-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--howso-card-foreground); }
+      .bg-popover { background-color: var(--howso-popover); }
+      .text-popover { color: var(--howso-popover); }
+      .border-popover { border-color: var(--howso-popover); }
+      .ring-popover { --tw-ring-color: var(--howso-popover); }
+      .bg-popover-foreground { background-color: var(--howso-popover-foreground); }
+      .text-popover-foreground { color: var(--howso-popover-foreground); }
+      .border-popover-foreground { border-color: var(--howso-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--howso-popover-foreground); }
+      .bg-primary { background-color: var(--howso-primary); }
+      .text-primary { color: var(--howso-primary); }
+      .border-primary { border-color: var(--howso-primary); }
+      .ring-primary { --tw-ring-color: var(--howso-primary); }
+      .bg-primary-foreground { background-color: var(--howso-primary-foreground); }
+      .text-primary-foreground { color: var(--howso-primary-foreground); }
+      .border-primary-foreground { border-color: var(--howso-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--howso-primary-foreground); }
+      .bg-muted { background-color: var(--howso-muted); }
+      .text-muted { color: var(--howso-muted); }
+      .border-muted { border-color: var(--howso-muted); }
+      .ring-muted { --tw-ring-color: var(--howso-muted); }
+      .bg-muted-foreground { background-color: var(--howso-muted-foreground); }
+      .text-muted-foreground { color: var(--howso-muted-foreground); }
+      .border-muted-foreground { border-color: var(--howso-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--howso-muted-foreground); }
+      .bg-border { background-color: var(--howso-border); }
+      .text-border { color: var(--howso-border); }
+      .border-border { border-color: var(--howso-border); }
+      .ring-border { --tw-ring-color: var(--howso-border); }
+      .bg-input { background-color: var(--howso-input); }
+      .text-input { color: var(--howso-input); }
+      .border-input { border-color: var(--howso-input); }
+      .ring-input { --tw-ring-color: var(--howso-input); }
+      .bg-ring { background-color: var(--howso-ring); }
+      .text-ring { color: var(--howso-ring); }
+      .border-ring { border-color: var(--howso-ring); }
+      .ring-ring { --tw-ring-color: var(--howso-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+      .sidebar-link:hover { background-color: rgba(37, 99, 235, 0.06); }
+      .sidebar-link.active { background-color: rgba(37, 99, 235, 0.1); color: var(--howso-primary); }
+      .table-row:hover { background-color: rgba(241, 245, 249, 0.6); }
+      .chart-container { position: relative; height: 280px; width: 100%; }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+  <div class="flex min-w-[1200px] min-h-screen">
+    <!-- 左侧导航栏 -->
+    <aside class="w-64 bg-card border-r border-border flex flex-col shrink-0">
+      <div class="h-16 flex items-center gap-3 px-6 border-b border-border">
+        <div class="w-9 h-9 rounded-lg bg-primary text-primary-foreground flex items-center justify-center">
+          <i data-lucide="tower-control" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <p class="howso-text-base howso-font-semibold text-foreground">吉林铁塔</p>
+          <p class="howso-text-xs text-muted-foreground">智能作业监管平台</p>
+        </div>
+      </div>
+      <nav class="flex-1 p-4 space-y-1">
+        <a href="web-task-management.html" data-dom-id="nav-task-management" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg howso-text-sm howso-font-medium text-muted-foreground transition-colors">
+          <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+          <span>任务管理</span>
+        </a>
+        <a href="web-statistics.html" data-dom-id="nav-statistics" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-lg howso-text-sm howso-font-medium text-foreground transition-colors">
+          <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+          <span>数据统计</span>
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg howso-text-sm howso-font-medium text-muted-foreground transition-colors">
+          <i data-lucide="settings" class="w-5 h-5"></i>
+          <span>系统管理</span>
+        </a>
+      </nav>
+      <div class="p-4 border-t border-border">
+        <div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/50">
+          <div class="w-9 h-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center howso-text-sm howso-font-semibold">王</div>
+          <div>
+            <p class="howso-text-sm howso-font-medium text-foreground">王建国</p>
+            <p class="howso-text-xs text-muted-foreground">安全管理员</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="flex-1 flex flex-col min-h-screen">
+      <!-- 顶部栏 -->
+      <header class="h-16 bg-card border-b border-border flex items-center justify-between px-6">
+        <h1 class="howso-text-lg howso-font-semibold text-foreground">数据统计中心</h1>
+        <div class="flex items-center gap-3">
+          <button data-dom-id="btn-export-statistics" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg howso-text-sm howso-font-medium hover:opacity-90 transition-opacity">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            导出报表
+          </button>
+        </div>
+      </header>
+
+      <div class="flex-1 p-6 space-y-6">
+        <!-- 筛选区域 -->
+        <section class="bg-card rounded-xl border border-border p-5">
+          <div class="flex items-end gap-4 flex-wrap">
+            <div class="space-y-1.5">
+              <label class="howso-text-sm howso-font-medium text-foreground">所属地市</label>
+              <div class="flex items-center gap-2">
+                <select id="filter-province" class="h-10 rounded-lg border border-input bg-background px-3 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring min-w-[120px]">
+                  <option value="">全部省份</option>
+                  <option value="吉林" selected>吉林省</option>
+                </select>
+                <select id="filter-city" class="h-10 rounded-lg border border-input bg-background px-3 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring min-w-[120px]">
+                  <option value="">全部城市</option>
+                  <option value="长春" selected>长春市</option>
+                  <option value="吉林">吉林市</option>
+                </select>
+                <select id="filter-district" class="h-10 rounded-lg border border-input bg-background px-3 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring min-w-[120px]">
+                  <option value="">全部区县</option>
+                  <option value="朝阳">朝阳区</option>
+                  <option value="南关">南关区</option>
+                  <option value="宽城">宽城区</option>
+                </select>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <label class="howso-text-sm howso-font-medium text-foreground">代维公司</label>
+              <select id="filter-company" class="h-10 rounded-lg border border-input bg-background px-3 howso-text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring min-w-[160px]">
+                <option value="">全部公司</option>
+                <option value="华信代维">华信代维</option>
+                <option value="中通服">中通服</option>
+                <option value="润建股份">润建股份</option>
+                <option value="中移建设">中移建设</option>
+              </select>
+            </div>
+            <div class="space-y-1.5">
+              <label class="howso-text-sm howso-font-medium text-foreground">时间范围</label>
+              <div class="flex items-center gap-2 bg-muted rounded-lg p-1">
+                <button type="button" data-range="7" class="range-btn px-3 py-1.5 rounded-md howso-text-sm howso-font-medium bg-card text-foreground shadow-sm">近7天</button>
+                <button type="button" data-range="30" class="range-btn px-3 py-1.5 rounded-md howso-text-sm howso-font-medium text-muted-foreground hover:text-foreground">近30天</button>
+              </div>
+            </div>
+            <button id="btn-search" class="h-10 px-5 bg-primary text-primary-foreground rounded-lg howso-text-sm howso-font-medium hover:opacity-90 transition-opacity">
+              查询
+            </button>
+            <button id="btn-reset" class="h-10 px-5 border border-input bg-background text-foreground rounded-lg howso-text-sm howso-font-medium hover:bg-muted transition-colors">
+              重置
+            </button>
+          </div>
+        </section>
+
+        <!-- 核心指标卡 -->
+        <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-3">
+              <p class="howso-text-sm text-muted-foreground">作业总数</p>
+              <div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+              </div>
+            </div>
+            <p class="howso-text-2xl howso-font-bold text-foreground">1,248</p>
+            <p class="howso-text-xs text-muted-foreground mt-1">较上期 +8.5%</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-3">
+              <p class="howso-text-sm text-muted-foreground">告警总数</p>
+              <div class="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center">
+                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+              </div>
+            </div>
+            <p class="howso-text-2xl howso-font-bold text-foreground">86</p>
+            <p class="howso-text-xs text-muted-foreground mt-1">较上期 -12.3%</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-3">
+              <p class="howso-text-sm text-muted-foreground">有效视频</p>
+              <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center">
+                <i data-lucide="video" class="w-4 h-4"></i>
+              </div>
+            </div>
+            <p class="howso-text-2xl howso-font-bold text-foreground">3,642</p>
+            <p class="howso-text-xs text-emerald-500 mt-1">有效率 92.4%</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-3">
+              <p class="howso-text-sm text-muted-foreground">无效视频</p>
+              <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center">
+                <i data-lucide="video-off" class="w-4 h-4"></i>
+              </div>
+            </div>
+            <p class="howso-text-2xl howso-font-bold text-foreground">298</p>
+            <p class="howso-text-xs text-amber-500 mt-1">占比 7.6%</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-3">
+              <p class="howso-text-sm text-muted-foreground">待审批</p>
+              <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+              </div>
+            </div>
+            <p class="howso-text-2xl howso-font-bold text-foreground">23</p>
+            <p class="howso-text-xs text-muted-foreground mt-1">需及时处理</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-3">
+              <p class="howso-text-sm text-muted-foreground">已完成</p>
+              <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-500 flex items-center justify-center">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+              </div>
+            </div>
+            <p class="howso-text-2xl howso-font-bold text-foreground">1,025</p>
+            <p class="howso-text-xs text-muted-foreground mt-1">完成率 82.1%</p>
+          </div>
+        </section>
+
+        <!-- 图表区域 第1行：省市区维度 -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="howso-text-base howso-font-semibold text-foreground">各地区告警分布</h3>
+              <span class="howso-text-xs text-muted-foreground">按区县统计</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-region-alarm"></canvas>
+            </div>
+          </div>
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="howso-text-base howso-font-semibold text-foreground">各地区告警趋势</h3>
+              <span class="howso-text-xs text-muted-foreground">近7天</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-region-trend"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- 图表区域 第2行：代维公司维度 -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="howso-text-base howso-font-semibold text-foreground">代维公司任务执行情况</h3>
+              <span class="howso-text-xs text-muted-foreground">按执行状态统计</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-company-task"></canvas>
+            </div>
+          </div>
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="howso-text-base howso-font-semibold text-foreground">代维公司告警占比</h3>
+              <span class="howso-text-xs text-muted-foreground">按告警数量统计</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-company-alarm"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- 图表区域 第3行：视频统计 -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="howso-text-base howso-font-semibold text-foreground">执法视频对比统计</h3>
+              <span class="howso-text-xs text-muted-foreground">有效/无效视频与有效率</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-video-compare"></canvas>
+            </div>
+          </div>
+          <div class="bg-card rounded-xl border border-border p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="howso-text-base howso-font-semibold text-foreground">执法视频状态统计</h3>
+              <span class="howso-text-xs text-muted-foreground">按视频状态占比</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-video-status"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- 数据表格 -->
+        <section class="bg-card rounded-xl border border-border overflow-hidden">
+          <div class="px-5 py-4 border-b border-border flex items-center justify-between">
+            <h3 class="howso-text-base howso-font-semibold text-foreground">各地区告警明细</h3>
+            <button class="inline-flex items-center gap-1.5 howso-text-sm text-primary hover:underline">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              导出 Excel
+            </button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full howso-text-sm">
+              <thead class="bg-muted/50">
+                <tr>
+                  <th class="px-4 py-3 text-left howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">序号</th>
+                  <th class="px-4 py-3 text-left howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">省份</th>
+                  <th class="px-4 py-3 text-left howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">城市</th>
+                  <th class="px-4 py-3 text-left howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">区县</th>
+                  <th class="px-4 py-3 text-left howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">作业数</th>
+                  <th class="px-4 py-3 text-left howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">告警数</th>
+                  <th class="px-4 py-3 text-left howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">有效视频</th>
+                  <th class="px-4 py-3 text-left howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">无效视频</th>
+                  <th class="px-4 py-3 text-left howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">告警率</th>
+                  <th class="px-4 py-3 text-left howso-text-xs howso-font-semibold text-muted-foreground uppercase tracking-wider">趋势</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border" id="region-table-body">
+                <tr class="table-row">
+                  <td class="px-4 py-3 text-foreground">1</td>
+                  <td class="px-4 py-3 text-foreground">吉林省</td>
+                  <td class="px-4 py-3 text-foreground">长春市</td>
+                  <td class="px-4 py-3 text-foreground">朝阳区</td>
+                  <td class="px-4 py-3 text-foreground">342</td>
+                  <td class="px-4 py-3 text-foreground"><span class="text-red-500 howso-font-medium">24</span></td>
+                  <td class="px-4 py-3 text-foreground">1,056</td>
+                  <td class="px-4 py-3 text-foreground">82</td>
+                  <td class="px-4 py-3 text-foreground">7.02%</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center gap-1 text-emerald-500"><i data-lucide="trending-down" class="w-3.5 h-3.5"></i>下降</span></td>
+                </tr>
+                <tr class="table-row">
+                  <td class="px-4 py-3 text-foreground">2</td>
+                  <td class="px-4 py-3 text-foreground">吉林省</td>
+                  <td class="px-4 py-3 text-foreground">长春市</td>
+                  <td class="px-4 py-3 text-foreground">南关区</td>
+                  <td class="px-4 py-3 text-foreground">286</td>
+                  <td class="px-4 py-3 text-foreground"><span class="text-red-500 howso-font-medium">18</span></td>
+                  <td class="px-4 py-3 text-foreground">892</td>
+                  <td class="px-4 py-3 text-foreground">64</td>
+                  <td class="px-4 py-3 text-foreground">6.29%</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center gap-1 text-emerald-500"><i data-lucide="trending-down" class="w-3.5 h-3.5"></i>下降</span></td>
+                </tr>
+                <tr class="table-row">
+                  <td class="px-4 py-3 text-foreground">3</td>
+                  <td class="px-4 py-3 text-foreground">吉林省</td>
+                  <td class="px-4 py-3 text-foreground">长春市</td>
+                  <td class="px-4 py-3 text-foreground">宽城区</td>
+                  <td class="px-4 py-3 text-foreground">198</td>
+                  <td class="px-4 py-3 text-foreground"><span class="text-red-500 howso-font-medium">12</span></td>
+                  <td class="px-4 py-3 text-foreground">634</td>
+                  <td class="px-4 py-3 text-foreground">48</td>
+                  <td class="px-4 py-3 text-foreground">6.06%</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center gap-1 text-red-500"><i data-lucide="trending-up" class="w-3.5 h-3.5"></i>上升</span></td>
+                </tr>
+                <tr class="table-row">
+                  <td class="px-4 py-3 text-foreground">4</td>
+                  <td class="px-4 py-3 text-foreground">吉林省</td>
+                  <td class="px-4 py-3 text-foreground">吉林市</td>
+                  <td class="px-4 py-3 text-foreground">船营区</td>
+                  <td class="px-4 py-3 text-foreground">156</td>
+                  <td class="px-4 py-3 text-foreground"><span class="text-red-500 howso-font-medium">9</span></td>
+                  <td class="px-4 py-3 text-foreground">512</td>
+                  <td class="px-4 py-3 text-foreground">31</td>
+                  <td class="px-4 py-3 text-foreground">5.77%</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center gap-1 text-emerald-500"><i data-lucide="trending-down" class="w-3.5 h-3.5"></i>下降</span></td>
+                </tr>
+                <tr class="table-row">
+                  <td class="px-4 py-3 text-foreground">5</td>
+                  <td class="px-4 py-3 text-foreground">吉林省</td>
+                  <td class="px-4 py-3 text-foreground">吉林市</td>
+                  <td class="px-4 py-3 text-foreground">丰满区</td>
+                  <td class="px-4 py-3 text-foreground">134</td>
+                  <td class="px-4 py-3 text-foreground"><span class="text-red-500 howso-font-medium">8</span></td>
+                  <td class="px-4 py-3 text-foreground">438</td>
+                  <td class="px-4 py-3 text-foreground">27</td>
+                  <td class="px-4 py-3 text-foreground">5.97%</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center gap-1 text-emerald-500"><i data-lucide="trending-down" class="w-3.5 h-3.5"></i>下降</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="px-5 py-3 border-t border-border flex items-center justify-between">
+            <p class="howso-text-xs text-muted-foreground">共 5 条记录</p>
+            <div class="flex items-center gap-2">
+              <button class="px-3 py-1.5 border border-input rounded-lg howso-text-xs text-muted-foreground hover:bg-muted">上一页</button>
+              <button class="px-3 py-1.5 bg-primary text-primary-foreground rounded-lg howso-text-xs">1</button>
+              <button class="px-3 py-1.5 border border-input rounded-lg howso-text-xs text-muted-foreground hover:bg-muted">下一页</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+
+      // 时间范围切换
+      const rangeBtns = document.querySelectorAll('.range-btn');
+      rangeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          rangeBtns.forEach(b => {
+            b.classList.remove('bg-card', 'text-foreground', 'shadow-sm');
+            b.classList.add('text-muted-foreground');
+          });
+          this.classList.add('bg-card', 'text-foreground', 'shadow-sm');
+          this.classList.remove('text-muted-foreground');
+        });
+      });
+
+      // Chart.js 默认配置
+      Chart.defaults.font.family = '"Microsoft YaHei", "PingFang SC", sans-serif';
+      Chart.defaults.font.size = 12;
+      Chart.defaults.color = '#64748b';
+
+      const primaryColor = '#2563eb';
+      const successColor = '#10b981';
+      const warningColor = '#f59e0b';
+      const errorColor = '#ef4444';
+      const infoColor = '#3b82f6';
+      const purpleColor = '#8b5cf6';
+
+      // 各地区告警分布（柱状图）
+      new Chart(document.getElementById('chart-region-alarm'), {
+        type: 'bar',
+        data: {
+          labels: ['朝阳区', '南关区', '宽城区', '二道区', '绿园区', '船营区', '丰满区'],
+          datasets: [{
+            label: '告警数',
+            data: [24, 18, 12, 10, 8, 9, 8],
+            backgroundColor: errorColor,
+            borderRadius: 4
+          }, {
+            label: '报警数',
+            data: [15, 11, 8, 7, 5, 6, 5],
+            backgroundColor: warningColor,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+
+      // 各地区告警趋势（折线图）
+      new Chart(document.getElementById('chart-region-trend'), {
+        type: 'line',
+        data: {
+          labels: ['09-11', '09-12', '09-13', '09-14', '09-15', '09-16', '09-17'],
+          datasets: [{
+            label: '朝阳区',
+            data: [5, 4, 6, 3, 5, 4, 3],
+            borderColor: primaryColor,
+            backgroundColor: primaryColor,
+            tension: 0.3
+          }, {
+            label: '南关区',
+            data: [3, 4, 3, 2, 4, 3, 3],
+            borderColor: successColor,
+            backgroundColor: successColor,
+            tension: 0.3
+          }, {
+            label: '宽城区',
+            data: [2, 3, 2, 1, 3, 2, 1],
+            borderColor: warningColor,
+            backgroundColor: warningColor,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+
+      // 代维公司任务执行情况（堆叠柱状图）
+      new Chart(document.getElementById('chart-company-task'), {
+        type: 'bar',
+        data: {
+          labels: ['华信代维', '中通服', '润建股份', '中移建设'],
+          datasets: [{
+            label: '未开始',
+            data: [45, 38, 32, 28],
+            backgroundColor: '#94a3b8',
+            borderRadius: 4
+          }, {
+            label: '进行中',
+            data: [128, 115, 98, 86],
+            backgroundColor: primaryColor,
+            borderRadius: 4
+          }, {
+            label: '已完成',
+            data: [256, 231, 198, 172],
+            backgroundColor: successColor,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } },
+          scales: {
+            x: { stacked: true, grid: { display: false } },
+            y: { stacked: true, beginAtZero: true, grid: { color: '#e2e8f0' } }
+          }
+        }
+      });
+
+      // 代维公司告警占比（环形图）
+      new Chart(document.getElementById('chart-company-alarm'), {
+        type: 'doughnut',
+        data: {
+          labels: ['华信代维', '中通服', '润建股份', '中移建设'],
+          datasets: [{
+            data: [28, 24, 20, 14],
+            backgroundColor: [primaryColor, successColor, warningColor, purpleColor],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '65%',
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+
+      // 执法视频对比统计（堆积柱状图 + 折线图）
+      new Chart(document.getElementById('chart-video-compare'), {
+        type: 'bar',
+        data: {
+          labels: ['09-11', '09-12', '09-13', '09-14', '09-15', '09-16', '09-17'],
+          datasets: [{
+            label: '有效视频',
+            data: [420, 456, 478, 512, 498, 534, 548],
+            backgroundColor: successColor,
+            order: 2,
+            borderRadius: 4
+          }, {
+            label: '无效视频',
+            data: [38, 42, 35, 48, 41, 36, 32],
+            backgroundColor: errorColor,
+            order: 3,
+            borderRadius: 4
+          }, {
+            label: '视频有效率',
+            data: [91.7, 91.6, 93.2, 91.4, 92.4, 93.7, 94.5],
+            type: 'line',
+            borderColor: primaryColor,
+            backgroundColor: primaryColor,
+            yAxisID: 'y1',
+            order: 1,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } },
+          scales: {
+            x: { stacked: true, grid: { display: false } },
+            y: { stacked: true, beginAtZero: true, grid: { color: '#e2e8f0' } },
+            y1: { position: 'right', min: 80, max: 100, grid: { display: false }, ticks: { callback: v => v + '%' } }
+          }
+        }
+      });
+
+      // 执法视频状态统计（圆环图）
+      new Chart(document.getElementById('chart-video-status'), {
+        type: 'doughnut',
+        data: {
+          labels: ['有效', '无效', '待识别', '识别中'],
+          datasets: [{
+            data: [3642, 298, 86, 42],
+            backgroundColor: [successColor, errorColor, '#94a3b8', infoColor],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '55%',
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+
+      // 导出按钮提示
+      document.querySelector('[data-dom-id="btn-export-statistics"]')?.addEventListener('click', function() {
+        alert('报表导出功能演示：将按当前筛选条件导出 Excel。');
+      });
+    });
+  </script>
+</body>
+</html>
