@@ -105,8 +105,8 @@
           "version": 1,
           "contentHeight": 1006,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-54acfbc4",
-          "measuredAt": 1789004049150
+          "sourceHash": "fnv1a-bf45cdbf",
+          "measuredAt": 1789026122080
         }
       },
       "devMetadata": {
@@ -156,8 +156,8 @@
           "version": 1,
           "contentHeight": 900,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-e7f6f604",
-          "measuredAt": 1789005176746
+          "sourceHash": "fnv1a-d0b9f57d",
+          "measuredAt": 1789456949545
         }
       },
       "devMetadata": {
@@ -329,10 +329,10 @@
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
-          "contentHeight": 1551,
+          "contentHeight": 1573,
           "viewportWidth": 375,
-          "sourceHash": "fnv1a-ccbfa3a1",
-          "measuredAt": 1789004049150
+          "sourceHash": "fnv1a-a5a107bd",
+          "measuredAt": 1789539726456
         }
       },
       "devMetadata": {
@@ -396,7 +396,7 @@
       "createdAt": 1788881280000,
       "canvasData": {
         "x": 0,
-        "y": 2232,
+        "y": 2244,
         "group": 0,
         "layoutSnapshot": {
           "version": 1,
@@ -414,6 +414,36 @@
             "targetPageId": "page-web-task-management",
             "hideEdge": true,
             "transitionLabel": "刷新任务管理"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-web-statistics",
+      "title": "数据统计中心",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1790590921279,
+      "canvasData": {
+        "x": 420,
+        "y": 2244,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1600,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-webstatistics",
+          "measuredAt": 1790590921279
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/web-statistics.html",
+        "interactions": [
+          {
+            "domId": "nav-task-management",
+            "targetPageId": "page-web-task-management",
+            "hideEdge": true,
+            "transitionLabel": "任务管理"
           }
         ]
       }
