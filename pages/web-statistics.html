@@ -351,24 +351,13 @@ body {
         </section>
 
         <!-- 图表区域 第1行：省市区维度 -->
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="bg-card rounded-xl border border-border p-5">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="howso-text-base howso-font-semibold text-foreground">各地区告警分布</h3>
-              <span class="howso-text-xs text-muted-foreground">按区县统计</span>
-            </div>
-            <div class="chart-container">
-              <canvas id="chart-region-alarm"></canvas>
-            </div>
+        <section class="bg-card rounded-xl border border-border p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="howso-text-base howso-font-semibold text-foreground">各地区告警趋势</h3>
+            <span class="howso-text-xs text-muted-foreground">近7天</span>
           </div>
-          <div class="bg-card rounded-xl border border-border p-5">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="howso-text-base howso-font-semibold text-foreground">各地区告警趋势</h3>
-              <span class="howso-text-xs text-muted-foreground">近7天</span>
-            </div>
-            <div class="chart-container">
-              <canvas id="chart-region-trend"></canvas>
-            </div>
+          <div class="chart-container">
+            <canvas id="chart-region-trend"></canvas>
           </div>
         </section>
 
@@ -546,34 +535,6 @@ body {
       const errorColor = '#ef4444';
       const infoColor = '#3b82f6';
       const purpleColor = '#8b5cf6';
-
-      // 各地区告警分布（柱状图）
-      new Chart(document.getElementById('chart-region-alarm'), {
-        type: 'bar',
-        data: {
-          labels: ['朝阳区', '南关区', '宽城区', '二道区', '绿园区', '船营区', '丰满区'],
-          datasets: [{
-            label: '告警数',
-            data: [24, 18, 12, 10, 8, 9, 8],
-            backgroundColor: errorColor,
-            borderRadius: 4
-          }, {
-            label: '报警数',
-            data: [15, 11, 8, 7, 5, 6, 5],
-            backgroundColor: warningColor,
-            borderRadius: 4
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { position: 'bottom' } },
-          scales: {
-            y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
-            x: { grid: { display: false } }
-          }
-        }
-      });
 
       // 各地区告警趋势（折线图）
       new Chart(document.getElementById('chart-region-trend'), {
