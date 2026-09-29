@@ -374,16 +374,16 @@ body {
           </div>
           <div class="bg-card rounded-xl border border-border p-5">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="howso-text-base howso-font-semibold text-foreground">代维公司告警占比</h3>
-              <span class="howso-text-xs text-muted-foreground">按告警数量统计</span>
+              <h3 class="howso-text-base howso-font-semibold text-foreground">告警类型占比</h3>
+              <span class="howso-text-xs text-muted-foreground">按代维公司统计</span>
             </div>
             <div class="chart-container">
-              <canvas id="chart-company-alarm"></canvas>
+              <canvas id="chart-alarm-type"></canvas>
             </div>
           </div>
         </section>
 
-        <!-- 图表区域 第3行：视频统计 -->
+        <!-- 图表区域 第3行：视频统计与闭环及时性 -->
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div class="bg-card rounded-xl border border-border p-5">
             <div class="flex items-center justify-between mb-4">
@@ -396,11 +396,11 @@ body {
           </div>
           <div class="bg-card rounded-xl border border-border p-5">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="howso-text-base howso-font-semibold text-foreground">执法视频状态统计</h3>
-              <span class="howso-text-xs text-muted-foreground">按视频状态占比</span>
+              <h3 class="howso-text-base howso-font-semibold text-foreground">闭环及时性分析</h3>
+              <span class="howso-text-xs text-muted-foreground">按闭环时长统计</span>
             </div>
             <div class="chart-container">
-              <canvas id="chart-video-status"></canvas>
+              <canvas id="chart-closure-timeliness"></canvas>
             </div>
           </div>
         </section>
@@ -605,23 +605,40 @@ body {
         }
       });
 
-      // 代维公司告警占比（环形图）
-      new Chart(document.getElementById('chart-company-alarm'), {
-        type: 'doughnut',
+      // 告警类型占比（按代维公司堆积柱状图）
+      new Chart(document.getElementById('chart-alarm-type'), {
+        type: 'bar',
         data: {
           labels: ['华信代维', '中通服', '润建股份', '中移建设'],
           datasets: [{
-            data: [28, 24, 20, 14],
-            backgroundColor: [primaryColor, successColor, warningColor, purpleColor],
-            borderWidth: 0
+            label: '未戴安全帽',
+            data: [12, 10, 8, 6],
+            backgroundColor: errorColor,
+            borderRadius: 4
+          }, {
+            label: '未穿反光衣',
+            data: [8, 7, 6, 4],
+            backgroundColor: warningColor,
+            borderRadius: 4
+          }, {
+            label: '未系安全带',
+            data: [6, 5, 4, 3],
+            backgroundColor: primaryColor,
+            borderRadius: 4
+          }, {
+            label: '其他违规',
+            data: [2, 2, 2, 1],
+            backgroundColor: '#94a3b8',
+            borderRadius: 4
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          cutout: '65%',
-          plugins: {
-            legend: { position: 'bottom' }
+          plugins: { legend: { position: 'bottom' } },
+          scales: {
+            x: { stacked: true, grid: { display: false } },
+            y: { stacked: true, beginAtZero: true, grid: { color: '#e2e8f0' } }
           }
         }
       });
@@ -666,23 +683,35 @@ body {
         }
       });
 
-      // 执法视频状态统计（圆环图）
-      new Chart(document.getElementById('chart-video-status'), {
-        type: 'doughnut',
+      // 闭环及时性分析（堆积柱状图）
+      new Chart(document.getElementById('chart-closure-timeliness'), {
+        type: 'bar',
         data: {
-          labels: ['有效', '无效', '待识别', '识别中'],
+          labels: ['华信代维', '中通服', '润建股份', '中移建设'],
           datasets: [{
-            data: [3642, 298, 86, 42],
-            backgroundColor: [successColor, errorColor, '#94a3b8', infoColor],
-            borderWidth: 0
+            label: '24小时内闭环',
+            data: [68, 62, 54, 48],
+            backgroundColor: successColor,
+            borderRadius: 4
+          }, {
+            label: '24-48小时闭环',
+            data: [18, 16, 14, 12],
+            backgroundColor: warningColor,
+            borderRadius: 4
+          }, {
+            label: '超过48小时闭环',
+            data: [6, 5, 4, 3],
+            backgroundColor: errorColor,
+            borderRadius: 4
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          cutout: '55%',
-          plugins: {
-            legend: { position: 'bottom' }
+          plugins: { legend: { position: 'bottom' } },
+          scales: {
+            x: { stacked: true, grid: { display: false } },
+            y: { stacked: true, beginAtZero: true, grid: { color: '#e2e8f0' } }
           }
         }
       });
